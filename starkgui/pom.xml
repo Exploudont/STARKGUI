@@ -1,0 +1,190 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tesi</groupId>
+  <artifactId>tesi</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>tesi</name>
+  <url>http://maven.apache.org</url>
+  
+  <!-- Autore -->
+  <developers>
+    <developer>
+      <id>737547</id>
+      <name>Daniele Longobardi (737547)</name>
+      <email>dlongobard1@studenti.uninsubria.it</email>
+      <url>https://github.com/Exploudont</url>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+  
+  <!-- Licenza -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses> 
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+	  
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20240303</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+	<!--
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/gson-2.8.6.jar</systemPath>
+    </dependency>
+	-->
+
+	<!-- Tool STARK -->
+	<!--
+    <dependency>
+      <groupId>it.unicam.quasylab.jspear</groupId>
+      <artifactId>STARKlib</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/lib.jar</systemPath>
+    </dependency>
+	-->
+	
+	<!-- Tool STARK test -->
+	<dependency>
+      <groupId>it.unicam.quasylab.jspear</groupId>
+      <artifactId>STARKlib</artifactId>
+      <version>1.0</version>
+    </dependency>
+    
+	<!-- ApacheCommon -->
+	<!--
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>ApacheCommon</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/commons-math3-3.6.1.jar</systemPath>
+    </dependency>
+	-->
+	
+	<!-- ApacheCommon test -->
+	<dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>ApacheCommon</artifactId>
+      <version>1.0</version>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+    <plugins>
+
+      <!-- For 3rd part library STARK -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <groupId>it.unicam.quasylab.jspear</groupId>
+          <artifactId>STARKlib</artifactId>
+          <version>1.0</version>
+          <packaging>jar</packaging>
+          <file>${project.basedir}/dependencies/lib.jar</file>
+          <generatePom>true</generatePom>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install-jar-lib</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+	  
+	  <!-- For 3rd part library ApacheCommon -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>ApacheCommon</artifactId>
+          <version>1.0</version>
+          <packaging>jar</packaging>
+          <file>${project.basedir}/dependencies/commons-math3-3.6.1.jar</file>
+          <generatePom>true</generatePom>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install-jar-lib</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+	
+	
+      <!-- To generate a JAR wihout the 3rd part library -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>it.starkgui.gui.window.WelcomeWindow</mainClass>
+            </manifest>
+            <manifestEntries>
+              <Multi-Release>true</Multi-Release>
+            </manifestEntries>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

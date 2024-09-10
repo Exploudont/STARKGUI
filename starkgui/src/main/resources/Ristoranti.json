@@ -1,0 +1,8 @@
+{
+	"parameters": [
+		{ "name":"Cucina",  "max_value":5.0, "min_value":1.0 },
+		{ "name":"Servizio",    "max_value":5.0, "min_value":1.0 },
+		{ "name":"Rapporto Qualita'/Prezzo", "max_value":5.0, "min_value":1.0 },
+		{ "name":"Atmosfera", "max_value":5.0, "min_value":1.0 }
+	]
+}

@@ -1,0 +1,130 @@
+package it.starkgui.gui.window;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Rectangle;
+
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutFocusTraversalPolicy;
+
+import it.starkgui.common.GUIUtils;
+import it.starkgui.common.Language;
+import it.starkgui.preset.Preset;
+import it.starkgui.preset.PresetLoader;
+
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class SelectPresetWindow {
+
+	protected static JFrame frame;
+	
+	private static JLabel selectPresetLabel;
+	private static JButton backButton;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SelectPresetWindow window = new SelectPresetWindow();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public SelectPresetWindow() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1200, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		
+		selectPresetLabel = new JLabel(Language.getLabel(Language.SELECT_PRESET));
+		selectPresetLabel.setFont(new Font("Tahoma", Font.PLAIN, 72));
+		panel.add(selectPresetLabel);
+		
+		JPanel panel_1 = new JPanel();
+		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
+		
+		backButton = new JButton(Language.getLabel(Language.BACK));
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GUIUtils.removeDecorations(backButton);
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomeWindow.frame.setBounds(SelectPresetWindow.frame.getBounds());
+				
+				SelectPresetWindow.frame.setVisible(false);
+				WelcomeWindow.frame.setVisible(true);
+			}
+		});
+		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panel_1.add(backButton);
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane(createPresetChoice());
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
+		
+	}
+	
+	private static Box createPresetChoice() {
+		String[] presets = PresetLoader.getAvailablePresets();
+		
+		Box verticalBox = Box.createVerticalBox();
+		
+		for(String presetName : presets) {
+			JButton btn = new JButton(presetName);
+			btn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			btn.setAlignmentX(0.5f);
+			GUIUtils.removeDecorations(btn);
+			
+			btn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					try {
+						ManagerWindow win = new ManagerWindow(presetName);
+					
+						ManagerWindow.frame.setBounds(SelectPresetWindow.frame.getBounds());
+						SelectPresetWindow.frame.setVisible(false);
+						ManagerWindow.frame.setVisible(true);
+					} catch(Exception exc) {
+						ErrorWindow win = new ErrorWindow(frame, WelcomeWindow.frame, "PRESET_ERROR");
+					}
+				}
+			});
+			
+			verticalBox.add(btn);
+		}
+		
+		
+		return verticalBox;
+	}
+	
+}

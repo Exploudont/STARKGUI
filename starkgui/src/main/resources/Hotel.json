@@ -1,0 +1,7 @@
+{
+	"parameters": [
+		{ "name":"Location",  "max_value":5.0, "min_value":1.0 },
+		{ "name":"Prezzo",    "max_value":5.0, "min_value":1.0 },
+		{ "name":"Colazione", "max_value":5.0, "min_value":1.0 }
+	]
+}
