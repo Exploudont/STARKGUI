@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="LANGUAGE">Language</entry>
+	<entry key="ENTER">Enter</entry>
+	<entry key="WELCOME">Welcome</entry>
+	<entry key="BACK">Back</entry>
+	<entry key="NEXT">Next</entry>
+	<entry key="SELECT_PRESET">Select Environment</entry>
+	<entry key="INSERT_DATAS">Insert Datas</entry>
+	<entry key="SELECTED">Selected</entry>
+	<entry key="MANAGEMENT">Manager</entry>
+	<entry key="EXPORT">Export Datas</entry>
+	<entry key="CONFIRM">Confirm</entry>
+	<entry key="ERROR">Error</entry>
+	<entry key="OK">Ok</entry>
+	<entry key="CREATE_DATA_RELEVATION">Create Detection Date</entry>
+	<entry key="INSERT_DATE">Insert Date</entry>
+	<entry key="DATE">Date</entry>
+	<entry key="INVALID_DATE">Invalid Date</entry>
+</properties>

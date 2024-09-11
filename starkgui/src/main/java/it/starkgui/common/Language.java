@@ -73,8 +73,8 @@ public final class Language {
 		try {
 			Properties prop = new Properties();
 		
-			InputStream in_s = Utils.loadFile(language + ".ini");
-			prop.load(in_s);
+			InputStream in_s = Utils.loadFile(language + ".xml");
+			prop.loadFromXML(in_s);
 			in_s.close();
 			
 			setLabels(prop);

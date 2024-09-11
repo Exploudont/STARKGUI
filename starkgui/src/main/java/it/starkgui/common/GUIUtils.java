@@ -1,8 +1,12 @@
 package it.starkgui.common;
 
 import java.awt.Font;
+import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import javax.swing.BorderFactory;
 
 /**
  * Useful GUI methods.
@@ -37,6 +41,12 @@ public final class GUIUtils {
 		button.setFocusPainted(false);
 		button.setContentAreaFilled(false);
 		return button;
+	}
+	
+	public static JFrame removeBorders(JFrame frame) {
+		frame.setUndecorated(true);
+		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.LIGHT_GRAY));
+		return frame;
 	}
 	
 	

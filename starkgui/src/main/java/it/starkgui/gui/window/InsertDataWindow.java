@@ -100,7 +100,6 @@ public class InsertDataWindow {
 			public void actionPerformed(ActionEvent e) {
 				SystemState system = SliderControllerParser.toSysteState(sliderControllers, preset);
 				sampleSet.add(system);
-				System.out.println("Added");
 				WritedDatasWindow.revalidate();
 				backButton.doClick();
 			}

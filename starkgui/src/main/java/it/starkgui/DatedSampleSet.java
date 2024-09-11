@@ -83,13 +83,11 @@ public class DatedSampleSet {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("date> " + getDate());
-		sb.append("values> \n");
-		sb.append(getSampleSet().toString());
-		
-		return sb.toString();
+		return new StringBuilder()
+			.append("date> " + getDate())
+			.append("values> \n")
+			.append(getSampleSet().toString())
+			.toString();
 	}
 	
 	

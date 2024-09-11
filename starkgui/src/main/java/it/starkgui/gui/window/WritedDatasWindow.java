@@ -98,6 +98,9 @@ public class WritedDatasWindow {
 		
 		verticalBox = Box.createVerticalBox();
 		scroller = new JScrollPane(verticalBox);
+		
+		updateScroller();
+		
 		frame.getContentPane().add(scroller, BorderLayout.CENTER);
 	}
 	
@@ -105,14 +108,24 @@ public class WritedDatasWindow {
 		return this;
 	}
 	
+	/**
+	 * Add a new relevation date.
+	 *
+	 * @param date the new date to add
+	 */
 	protected void addRelevationDate(Date date) {
+		if(this.collector.contains(date))
+			return ;
+		
 		this.collector.add(new DatedSampleSet(date));
 		DataCollector.getInstance().add(new DatedSampleSet(date));
 	}
 	
+	/**
+	 * Revalidates the component hierarchy up to the nearest validate root. 
+	 */
 	protected static void revalidate() {
 		updateScroller();
-		
 		frame.revalidate();
 	}
 	
@@ -124,15 +137,13 @@ public class WritedDatasWindow {
 		for(Date d : collector.getDates()) {
 			String str_date = formatter.format(d);
 			
-			JButton button = new JButton(str_date);
+			JButton button = new JButton(str_date + "  (" + collector.get(d).size() + ")");
 			button.setFont(new Font("Tahoma", Font.BOLD, 20));
 			GUIUtils.removeDecorations(button);
 			button.setAlignmentX(0.5f);
 			
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("pressed> " + str_date);
-					
 					InsertDataWindow win = new InsertDataWindow(preset, DataCollector.getInstance().get(d).getSampleSet());
 					
 					InsertDataWindow.frame.setBounds(frame.getBounds());

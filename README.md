@@ -6,7 +6,7 @@ Progetto di tesi con alla base il _tool_ [STARK](https://github.com/quasylab/jsp
 
 ## Download
 
-Per scaricare il progetto di tesi sarà necessario andare a clonare il _repository_:
+Per scaricare il progetto di tesi sarà necessario clonare il _repository_:
 
 ``` Shell
 git clone https://github.com/Exploudont/STARKGUI.git
@@ -23,7 +23,7 @@ Per la realizzazione del progetto si è fatto uso di:
 - _build_ _tool_ Maven;
 - IDE Eclipse;
 
-Il progetto presenta delle dipendenze esterne e di JAR di terze parti.
+Il progetto presenta delle dipendenze esterne e di pacchetti _jar_ di terze parti.
 
 Per la compilazione sarà necessario recersi all'interno della cartella di progetto e lanciare il seguente comando da terminale:
 
@@ -42,7 +42,7 @@ Se non si volessero includere le dipendenze di terze parti per la compilazione s
 mvn package
 ```
 
-Affinché possa funzionare è però richiesto che i `jar` delle dipendenze siano presenti all'interno nel _classpath_.
+Affinché possa funzionare è richiesto che le dipendenze siano presenti all'interno del _classpath_.
 
 
 ### Errori con JAR di terze parti
@@ -61,13 +61,13 @@ Per creare la JavaDoc sarà necessario recarsi all'interno della cartella di pro
 mvn javadoc:javadoc
 ```
 
-La javadoc sarà presente all'interno della cartella `target\reports\apidocs`.
+La javadoc verrà generata all'interno della cartella `target\reports\apidocs`.
 
 
 
 ## Esecuzione
 
-Per eseguire il programma sarà necessario recarsi all'interno della cartella di progetto, recarsi nella cartella `target` e lanciare il seguente comando da terminare:
+Per eseguire il programma sarà necessario recarsi all'interno della cartella di progetto, spostarsi all'intenro della cartella `target` e lanciare il seguente comando da terminare:
 
 ``` Shell
 java -jar tesi-0.0.1-SNAPSHOT.jar

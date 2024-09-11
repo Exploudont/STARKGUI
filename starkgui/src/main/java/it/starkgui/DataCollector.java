@@ -21,6 +21,11 @@ public final class DataCollector {
 	
 	private static DataCollector singleton;
 	
+	/**
+	 * Returns the {@code DataCollector} object.
+	 *
+	 * @return the singleton instance
+	 */
 	public static DataCollector getInstance() {
 		if(singleton == null)
 			singleton = new DataCollector();
@@ -66,6 +71,16 @@ public final class DataCollector {
 		return collector
 				.keySet()
 				.toArray(size -> new Date[size]);
+	}
+	
+	/**
+	 * Returns {@code true} if contains the specified date.
+	 *
+	 * @param date the date to search
+	 * @return {@code true} if contains the specified date, otherwise {@code false}
+	 */
+	public boolean contains(final Date date) {
+		return collector.containsKey(date);
 	}
 	
 	/**

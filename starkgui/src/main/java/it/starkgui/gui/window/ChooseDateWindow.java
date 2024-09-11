@@ -54,6 +54,7 @@ public class ChooseDateWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		GUIUtils.removeBorders(frame);
 		frame.setBounds(100, 100, WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
