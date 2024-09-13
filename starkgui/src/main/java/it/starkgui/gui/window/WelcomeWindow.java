@@ -29,8 +29,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+
+/**
+ * Window class that launch the application.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
 public class WelcomeWindow {
 
+	/** The frame. */
 	protected static JFrame frame;
 	
 	private static JLabel WelcomeLabel;
@@ -102,6 +111,11 @@ public class WelcomeWindow {
 		frame.getContentPane().add(EnterButton);
 	}
 	
+	/**
+	 * Create the language panel.
+	 * 
+	 * @return the language panel
+	 */
 	private static JPanel createLanguagePanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));

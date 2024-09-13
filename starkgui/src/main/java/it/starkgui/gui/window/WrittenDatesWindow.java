@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import it.starkgui.DataCollector;
-import it.starkgui.DatedSampleSet;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.preset.Preset;
@@ -26,22 +25,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class WritedDatasWindow {
 
+/**
+ * Window class that allow the user to see the inserted dated data.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
+public class WrittenDatesWindow {
+
+	/** The frame. */
 	protected static JFrame frame;
-	protected static JScrollPane scroller;
-	private static Box verticalBox;
 	
+	/** The written data scroller. */
+	protected static JScrollPane scroller;
+	
+	
+	private static Box verticalBox;
 	private static Preset preset;
 	private static DataCollector collector;
 	
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param preset the preset
 	 */
-	public WritedDatasWindow(final Preset preset) {
+	public WrittenDatesWindow(final Preset preset) {
 		collector = DataCollector.getInstance();
-		WritedDatasWindow.preset = preset;
+		WrittenDatesWindow.preset = preset;
 		initialize();
 	}
 
@@ -99,37 +112,44 @@ public class WritedDatasWindow {
 		verticalBox = Box.createVerticalBox();
 		scroller = new JScrollPane(verticalBox);
 		
-		updateScroller();
+		updateWrittenData();
 		
 		frame.getContentPane().add(scroller, BorderLayout.CENTER);
 	}
 	
-	protected WritedDatasWindow getCurrentWindow() {
+	/**
+	 * Return the current object.
+	 * 
+	 * @return the current object
+	 */
+	protected WrittenDatesWindow getCurrentWindow() {
 		return this;
 	}
 	
 	/**
-	 * Add a new relevation date.
+	 * Add a new detection date.
 	 *
 	 * @param date the new date to add
 	 */
-	protected void addRelevationDate(Date date) {
+	protected void addDetectionDate(Date date) {
 		if(this.collector.contains(date))
 			return ;
 		
-		this.collector.add(new DatedSampleSet(date));
-		DataCollector.getInstance().add(new DatedSampleSet(date));
+		collector.add(date);
 	}
 	
 	/**
 	 * Revalidates the component hierarchy up to the nearest validate root. 
 	 */
 	protected static void revalidate() {
-		updateScroller();
+		updateWrittenData();
 		frame.revalidate();
 	}
 	
-	private static void updateScroller() {
+	/**
+	 * Update the written data component.
+	 */
+	private static void updateWrittenData() {
 		verticalBox.removeAll();
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -144,11 +164,10 @@ public class WritedDatasWindow {
 			
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					InsertDataWindow win = new InsertDataWindow(preset, DataCollector.getInstance().get(d).getSampleSet());
-					
-					InsertDataWindow.frame.setBounds(frame.getBounds());
+					DetectionWindow win = new DetectionWindow(d, preset);
+					DetectionWindow.frame.setBounds(frame.getBounds());
 					frame.setVisible(false);
-					InsertDataWindow.frame.setVisible(true);
+					DetectionWindow.frame.setVisible(true);
 				}
 			});
 			

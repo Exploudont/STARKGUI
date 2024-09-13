@@ -16,8 +16,8 @@ import java.io.InputStream;
  * The file reading is case-sensitive. If some parameters override the value into the configuration file the value will result in the last override value.
  *
  * @author Daniele Longobardi (matricola 737547)
- * @version 1.0
  * @since JDK 17
+ * @version 1.0.0
  */
 public class ProgramConfiguration {
 	
@@ -35,14 +35,13 @@ public class ProgramConfiguration {
 	
 	
 	/**
-	 * Return the instance of the program configiration.
+	 * Return the instance of the program configuration.
 	 *
-	 * @return return the instance of the program configiration
+	 * @return return the instance of the program configuration
 	 */
 	public static ProgramConfiguration getInstance() {
 		return singleton;
 	}
-	
 	
 	/**
 	 * Create a new empty {@code ProgramConfiguration} object.
@@ -50,7 +49,6 @@ public class ProgramConfiguration {
 	private ProgramConfiguration() {
 		properties = new Properties();
 	}
-	
 	
 	/**
 	 * Create a new {@code ProgramConfiguration} object.
@@ -66,7 +64,6 @@ public class ProgramConfiguration {
 		properties = loadProperties(in_stream);
 	}
 	
-	
 	/**
 	 * Load the configuration file.
 	 *
@@ -80,7 +77,6 @@ public class ProgramConfiguration {
 		return prop;
 	}
 	
-	
 	/**
 	 * Return the value of a specific parameter.
 	 *
@@ -91,7 +87,6 @@ public class ProgramConfiguration {
 		return properties.getProperty(parameter); 
 	}
 	
-	
 	/**
 	 * Return an unmodifiable set of parameter from this configuration.
 	 *
@@ -100,7 +95,6 @@ public class ProgramConfiguration {
 	public Set<String> getAllParameters() {
 		return properties.stringPropertyNames();
 	}
-	
 	
 	private Properties properties;
 	

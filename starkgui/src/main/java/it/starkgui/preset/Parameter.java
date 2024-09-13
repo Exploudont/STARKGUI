@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * 
  * @author  Daniele Longobardi (matricola 737547)
  * @since JDK 17
- * @version 1.0
+ * @version 1.0.0
  */
 public record Parameter (
 	String name,

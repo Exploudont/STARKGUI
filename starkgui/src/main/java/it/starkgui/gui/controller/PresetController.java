@@ -12,6 +12,14 @@ import javax.swing.JScrollPane;
 import it.starkgui.preset.Parameter;
 import it.starkgui.preset.Preset;
 
+
+/**
+ * Class that allow to manage a generic {@code Preset} object.
+ * 
+ * @author  Daniele Longobardi (matricola 737547)
+ * @since JDK 17
+ * @version 1.0.0
+ */
 public final class PresetController {
 	
 	/**

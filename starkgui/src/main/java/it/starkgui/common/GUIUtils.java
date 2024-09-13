@@ -13,7 +13,7 @@ import javax.swing.BorderFactory;
  * 
  * @author  Daniele Longobardi (matricola 737547)
  * @since JDK 17
- * @version 1.0
+ * @version 1.0.0
  */
 public final class GUIUtils {
 	
@@ -36,16 +36,38 @@ public final class GUIUtils {
 		return button;
 	}
 	
-	
+	/**
+	 * Remove the button filled color.
+	 * 
+	 * @param button the button
+	 * @return the button without the filled color
+	 */
 	public static JButton removeFilled(JButton button) {
 		button.setFocusPainted(false);
 		button.setContentAreaFilled(false);
 		return button;
 	}
-	
+
+	/**
+	 * Remove borders.
+	 * 
+	 * @param frame the frame
+	 * @return the frame without borders
+	 */
 	public static JFrame removeBorders(JFrame frame) {
+		return removeBorders(frame, Color.LIGHT_GRAY);
+	}
+	
+	/**
+	 * Remove borders.
+	 * 
+	 * @param frame the frame
+	 * @param color the border color
+	 * @return the frame without borders
+	 */
+	public static JFrame removeBorders(JFrame frame, final Color color) {
 		frame.setUndecorated(true);
-		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.LIGHT_GRAY));
+		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, color));
 		return frame;
 	}
 	

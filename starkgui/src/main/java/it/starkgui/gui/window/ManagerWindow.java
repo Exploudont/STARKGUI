@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 import it.starkgui.DataCollector;
@@ -19,21 +21,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-
+/**
+ * Window class that allow to the user select the operations.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
 public class ManagerWindow {
 
+	/** The frame. */
 	protected static JFrame frame;
 	
-	protected static JLabel titleLabel;
-	protected static JButton backButton;
+	private static JLabel titleLabel;
 	
 	private final String presetName;
 	private final Preset preset;
 	
-	//protected static DataCollector dataCollector;
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param presetName the preset name
 	 */
 	public ManagerWindow(final String presetName) throws IOException {
 		this.presetName = presetName;
@@ -59,7 +68,7 @@ public class ManagerWindow {
 		panel.add(titleLabel);
 		
 
-		JPanel bottomPanel = createButtomPanel();
+		JPanel bottomPanel = createBottomPanel();
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
 		
@@ -72,7 +81,6 @@ public class ManagerWindow {
 		exportDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("export operations");
-				DataCollector.getInstance().getSampleSets().forEach(System.out::println);
 			}
 		});
 		exportDataButton.setContentAreaFilled(false);
@@ -87,20 +95,27 @@ public class ManagerWindow {
 		
 		insertDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WritedDatasWindow win = new WritedDatasWindow(preset);
+				WrittenDatesWindow win = new WrittenDatesWindow(preset);
 				
-				WritedDatasWindow.frame.setBounds(frame.getBounds());
+				WrittenDatesWindow.frame.setBounds(frame.getBounds());
 				frame.setVisible(false);
-				WritedDatasWindow.frame.setVisible(true);
+				WrittenDatesWindow.frame.setVisible(true);
 			}
 		});
 	}
 	
-	private JPanel createButtomPanel() {
+	/**
+	 * Create the bottom panel
+	 * 
+	 * @return the bottom panel
+	 */
+	private JPanel createBottomPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		panel.add(new JLabel(Language.getLabel(Language.SELECTED) + ":  " + presetName));
+		JLabel label = new JLabel(Language.getLabel(Language.SELECTED) + ":  " + presetName);
+		//label.setForeground(Color.LIGHT_GRAY);
+		panel.add(label);
 		
 		return panel;
 	}

@@ -15,7 +15,7 @@ import java.io.BufferedReader;
  * 
  * @author  Daniele Longobardi (matricola 737547)
  * @since JDK 17
- * @version 1.0
+ * @version 1.0.0
  */
 public final class Language {
 	
@@ -86,6 +86,11 @@ public final class Language {
 		return true;
 	}
 	
+	/**
+	 * Set the label values base on the properties.
+	 * 
+	 * @param prop the properties
+	 */
 	private static void setLabels(final Properties prop) {
 		labels[LANGUAGE] = prop.getProperty("LANGUAGE");
 		labels[ENTER] = prop.getProperty("ENTER");

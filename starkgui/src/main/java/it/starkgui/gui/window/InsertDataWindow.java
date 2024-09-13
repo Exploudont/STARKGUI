@@ -40,21 +40,33 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 
 
+/**
+ * Window class that allow to the user to insert the detection data.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
 public class InsertDataWindow {
 
+	/** The frame. */
 	protected static JFrame frame;
 	
-	private static SampleSet sampleSet;
 	private final Preset preset;
 	private final PresetController presetController;
 	private final SliderController[] sliderControllers;
+	
+	private final Date date;
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param date the referred date
+	 * @param preset the selected preset
 	 */
-	public InsertDataWindow(final Preset preset, SampleSet sampleSet) {
+	public InsertDataWindow(final Date date, final Preset preset) {
+		this.date = date;
 		this.preset = preset;
-		InsertDataWindow.sampleSet = sampleSet;
 		this.presetController = PresetController.Create(preset);
 		this.sliderControllers = presetController.getSliders();
 		
@@ -76,7 +88,7 @@ public class InsertDataWindow {
 		frame.getContentPane().add(lblNewLabel);
 		
 		
-		frame.getContentPane().add(createInsertPanel());
+		frame.getContentPane().add(createInsertComponent());
 		
 		JPanel panel = new JPanel();
 		panel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
@@ -87,9 +99,9 @@ public class InsertDataWindow {
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WritedDatasWindow.frame.setBounds(frame.getBounds());
+				DetectionWindow.frame.setBounds(frame.getBounds());
 				frame.setVisible(false);
-				WritedDatasWindow.frame.setVisible(true);
+				DetectionWindow.frame.setVisible(true);
 			}
 		});
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -98,9 +110,8 @@ public class InsertDataWindow {
 		JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SystemState system = SliderControllerParser.toSysteState(sliderControllers, preset);
-				sampleSet.add(system);
-				WritedDatasWindow.revalidate();
+				DataCollector.getInstance().add(date, SliderControllerParser.toDetection(sliderControllers));
+				DetectionWindow.revalidate();
 				backButton.doClick();
 			}
 		});
@@ -108,8 +119,12 @@ public class InsertDataWindow {
 		panel.add(confirmButton);
 	}
 	
-	
-	private JScrollPane createInsertPanel() {
+	/**
+	 * Create the component to insert data.
+	 * 
+	 * @return the component that allow to insert data
+	 */
+	private JScrollPane createInsertComponent() {
 		Box verticalBox = Box.createVerticalBox();
 		JScrollPane scroller = new JScrollPane(verticalBox);
 		

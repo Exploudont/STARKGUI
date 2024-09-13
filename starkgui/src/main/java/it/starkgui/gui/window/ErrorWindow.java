@@ -17,6 +17,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Window class that allow to communicate the errors to the user.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
 public class ErrorWindow {
 
 	private JFrame frame;
@@ -30,6 +37,10 @@ public class ErrorWindow {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param caller the caller frame
+	 * @param previous the previous frame
+	 * @param description the error description
 	 */
 	public ErrorWindow(JFrame caller, JFrame previous, final String description) {
 		this.caller = caller;

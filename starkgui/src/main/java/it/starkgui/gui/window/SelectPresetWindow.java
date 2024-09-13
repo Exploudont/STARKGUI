@@ -23,28 +23,20 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Window class that allow the user to select the preset.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17 
+ */
 public class SelectPresetWindow {
 
+	/** The frame. */
 	protected static JFrame frame;
 	
 	private static JLabel selectPresetLabel;
 	private static JButton backButton;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectPresetWindow window = new SelectPresetWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -94,6 +86,11 @@ public class SelectPresetWindow {
 		
 	}
 	
+	/**
+	 * Create the preset choice component.
+	 * 
+	 * @return the preset choice component
+	 */
 	private static Box createPresetChoice() {
 		String[] presets = PresetLoader.getAvailablePresets();
 		

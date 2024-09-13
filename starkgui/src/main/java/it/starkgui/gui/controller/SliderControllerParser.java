@@ -11,12 +11,14 @@ import it.unicam.quasylab.jspear.ds.DataRange;
 import it.unicam.quasylab.jspear.ds.DataState;
 import it.unicam.quasylab.jspear.ds.DataStateFunction;
 
+import it.starkgui.Detection;
+
 /**
  * Parser for {@code SliderController} objects.
  * 
  * @author Daniele Longobardi (matricola 737547)
  * @since JDK 17
- * @version 1.0
+ * @version 1.0.0
  */
 public final class SliderControllerParser {
 	
@@ -25,46 +27,19 @@ public final class SliderControllerParser {
 	 */
 	private SliderControllerParser() { }
 	
-	
 	/**
-	 * Parse some slider controllers into a data state object.
+	 * Parse a slider controllers into a detection object.
 	 * 
 	 * @param sliders the slider array
-	 * @param preset the selected preset
-	 * @return the generated {@code DataState} object
+	 * @return the generated {@code Detection} object
 	 */
-	public static DataState toDataState(SliderController[] sliders, Preset preset) {
-		double[] datas = new double[sliders.length];
+	public static Detection toDetection(final SliderController[] sliders) {
+		Detection.Builder builder = new Detection.Builder();
 		
-		for(int i=0 ; i<sliders.length ; i++)
-			datas[i] = sliders[i].getValue().doubleValue();
-			
+		for(SliderController s : sliders)
+			builder.addParameter(s.getName(), s.getValue().doubleValue());
 		
-		DataRange[] range = Arrays.asList(sliders)
-				.stream()
-				.map(s -> preset.getParameter(s.getName()))
-				.map(p -> new DataRange(p.min_value(), p.max_value()))
-				.toArray(size -> new DataRange[size]);
-		
-		DataState ds = new DataState(range, datas);
-		
-		return ds;
-	}
-
-	/**
-	 * Parse some slider controllers into a system state object.
-	 * 
-	 * @param sliders the slider array
-	 * @param preset the selected preset
-	 * @return the generated {@code SystemState} object
-	 */
-	public static SystemState toSysteState(SliderController[] sliders, Preset preset) {
-		DataState state = SliderControllerParser.toDataState(sliders, preset);
-		
-		Controller controller = new NilController();
-		DataStateFunction function = (rg, ds) -> ds;
-		
-		return new ControlledSystem(controller, function, state);
+		return builder.build();
 	}
 
 }

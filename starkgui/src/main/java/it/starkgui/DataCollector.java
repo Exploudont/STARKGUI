@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.TreeMap;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.SortedMap;
 
+import it.starkgui.gui.controller.DetectionSystemStateAdapter;
+import it.starkgui.preset.Preset;
 import it.unicam.quasylab.jspear.SampleSet;
 import it.unicam.quasylab.jspear.SystemState;
 
@@ -15,7 +18,7 @@ import it.unicam.quasylab.jspear.SystemState;
  *
  * @author  Daniele Longobardi (matricola 737547)
  * @since JDK 17
- * @version 1.0
+ * @version 1.0.0
  */
 public final class DataCollector {
 	
@@ -37,29 +40,64 @@ public final class DataCollector {
 	 * Create a new empty {@code DataCollector} object.
 	 */
 	private DataCollector() {
-		this.collector= new TreeMap<>(); 
+		this.collector = new TreeMap<>();
 	}
 	
 	/**
-	 * Add a new dated sample set into the collector.
-	 * 
-	 * @param datedSampleSet the dated sample set to add
+	 * Removes all the data collected.
 	 */
-	public void add(DatedSampleSet datedSampleSet) {
-		this.collector.put(datedSampleSet.getDate(), datedSampleSet);
+	public void clear() {
+		this.collector.clear();
 	}
 	
 	/**
-	 * Return the sample set ordered by date.
+	 * Add a detection to the associated date.
 	 * 
-	 * @return the sample set ordered by date
+	 * @param date the date
 	 */
-	public List<SampleSet> getSampleSets() {
-		return collector
-				.keySet()
-				.stream()
-				.map(dss -> collector.get(dss).getSampleSet())
-				.toList();
+	public void add(final Date date) {
+		if(!contains(date))
+			collector.put(date, new LinkedList<>());
+	}
+	
+	/**
+	 * Add a detection to the associated date.
+	 * 
+	 * @param date the date
+	 * @param detection the detection
+	 */
+	public void add(final Date date, final Detection detection) {
+		List<Detection> list = collector.get(date);
+		
+		if(list == null)
+			list = new LinkedList<>();
+		
+		list.add(detection);
+	}
+	
+	/**
+	 * Return all the sample sets.
+	 * 
+	 * @param preset the selected preset
+	 * @return a {@code List} containing all the sample sets
+	 */
+	public List<SampleSet> getSampleSets(final Preset preset) {
+		
+		List<SampleSet> list = new LinkedList<>();
+		for(Date d : collector.keySet()) {
+			System.out.println("date> " + d.toString());
+			SampleSet sampleSet = new SampleSet();
+			
+			for(Detection detection : collector.get(d)) {
+				System.out.println(detection.toString());
+				sampleSet.add(new DetectionSystemStateAdapter(detection)
+						.toSystemState(preset));
+			}
+				
+			list.add(sampleSet);
+		}
+		
+		return list;
 	}
 	
 	/**
@@ -84,14 +122,14 @@ public final class DataCollector {
 	}
 	
 	/**
-	 * Return the date's associated dated sample set.
+	 * Return the date's associated detections.
 	 * 
-	 * @return the date's associated dated sample set
-	 */
-	public DatedSampleSet get(final Date date) {
+	 * @return the date's associated detections
+	 * */
+	public List<Detection> get(final Date date) {
 		return collector.get(date);
 	}
 	
 	
-	private SortedMap<Date, DatedSampleSet> collector;
+	private SortedMap<Date, List<Detection>> collector;
 }

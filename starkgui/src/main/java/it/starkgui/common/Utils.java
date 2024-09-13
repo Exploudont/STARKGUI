@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 /**
  * Provide to some utilities methods.
  * 
- * @author  Daniele Longobardi
+ * @author  Daniele Longobardi (matricola 737547)
  * @since JDK 17
  * @version 1.0.0
  */
@@ -29,7 +29,7 @@ public class Utils {
 	 *
 	 * @param file_name the file name
 	 * @return return the file stream
-	 * @exception FileNotFoundException
+	 * @throws FileNotFoundException
 	 */
 	public static InputStream loadFile(final String file_name) throws FileNotFoundException {
 		InputStream in = ClassLoader
@@ -47,7 +47,7 @@ public class Utils {
 	 * 
 	 * @param file_name the file name
 	 * @return the {@code Reader} object
-	 * @exception IOException
+	 * @throws IOException
 	 */
 	public static Reader getFileReader(final String file_name) throws IOException {
 		return new InputStreamReader(Utils.loadFile(file_name));
@@ -58,7 +58,7 @@ public class Utils {
 	 * 
 	 * @param in_stream the file input stream
 	 * @return the content of the file
-	 * @exception IOException
+	 * @throws IOException
 	 */
 	public static String readAllFile(InputStream in_stream) throws IOException {
 		StringBuilder sb = new StringBuilder();

@@ -31,20 +31,33 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
+/**
+ * Window class that allow the user to choose a date.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17
+ */
 public class ChooseDateWindow {
 
-	//private static final Pattern DATE_PATTERN = "[0-]"
-	protected static JFrame frame = null;
-	private JTextField textField;
-	private WritedDatasWindow dataWindow;
-	
+	/** The width of the window. */
 	public static final int WIDTH = 450;
+	
+	/** The height of the window. */
 	public static final int HEIGHT = 206;
+	
+	/** The frame. */
+	protected static JFrame frame = null;
+	
+	private JTextField textField;
+	private WrittenDatesWindow dataWindow;
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param dataWindow the already written datas
 	 */
-	public ChooseDateWindow(WritedDatasWindow dataWindow) {
+	public ChooseDateWindow(WrittenDatesWindow dataWindow) {
 		this.dataWindow = dataWindow;
 		initialize();
 	}
@@ -92,12 +105,12 @@ public class ChooseDateWindow {
 				
 				try {
 					date = formatter.parse(textField.getText());
-					dataWindow.addRelevationDate(date);
+					dataWindow.addDetectionDate(date);
 					
 					dataWindow.revalidate();
 					frame.setVisible(false);
 				} catch(ParseException  exception) {
-					ErrorWindow win = new ErrorWindow(frame, WritedDatasWindow.frame, Language.getLabel(Language.INVALID_DATE));
+					ErrorWindow win = new ErrorWindow(frame, WrittenDatesWindow.frame, Language.getLabel(Language.INVALID_DATE));
 				}
 			}
 		});

@@ -11,7 +11,7 @@ import javax.swing.event.*;
  * Used to aggregate basic components into one controller.
  *
  * @author Daniele Longobardi (matricola 737547)
- * @version 1.0
+ * @version 1.0.0
  * @since JDK 17
  */
 public class SliderController
