@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.ImageIcon;
 
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
@@ -85,7 +86,10 @@ public class ChooseDateWindow {
 		
 		panel_1.add(Box.createHorizontalStrut(10));
 		
-		JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		JButton backButton = new JButton();
+		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -96,7 +100,11 @@ public class ChooseDateWindow {
 		
 		panel_1.add(Box.createHorizontalGlue());
 		
-		JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
+		JButton confirmButton;
+		//JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
+		confirmButton = new JButton();
+		confirmButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/confirm.png")));
+		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat  formatter = new SimpleDateFormat("dd-MM-yyyy");

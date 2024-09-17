@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -78,7 +79,11 @@ public class WrittenDatesWindow {
 		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
-		JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		JButton backButton;
+		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		backButton = new JButton();
+		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		GUIUtils.removeDecorations(backButton);
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,13 +92,17 @@ public class WrittenDatesWindow {
 				ManagerWindow.frame.setVisible(true);
 			}
 		});
-		GUIUtils.removeDecorations(backButton);
 		panel_1.add(backButton);
 		
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel_1.add(horizontalGlue);
 		
-		JButton createRelevationButton = new JButton(Language.getLabel(Language.CREATE_DATA_RELEVATION));
+		JButton createRelevationButton;
+		//createRelevationButton = new JButton(Language.getLabel(Language.CREATE_DATA_RELEVATION));
+		createRelevationButton = new JButton();
+		createRelevationButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/add.png")));
+		GUIUtils.removeDecorations(createRelevationButton);
+		
 		createRelevationButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		createRelevationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

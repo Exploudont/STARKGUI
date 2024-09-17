@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  * Class that allow the user to access
@@ -73,7 +74,7 @@ public final class Language {
 		try {
 			Properties prop = new Properties();
 		
-			InputStream in_s = Utils.loadFile(language + ".xml");
+			InputStream in_s = Utils.loadFile("languages/" + language + ".xml");
 			prop.loadFromXML(in_s);
 			in_s.close();
 			
@@ -118,7 +119,8 @@ public final class Language {
 	 */
 	public static String[] getAvailable() {
 		try {
-			BufferedReader br = new BufferedReader(Utils.getFileReader("available languages.txt"));
+			InputStreamReader in_stream = new InputStreamReader(Utils.loadFile("languages/available.txt"));
+			BufferedReader br = new BufferedReader(in_stream);
 			List<String> list = new ArrayList<String>();
 			
 			String line = null;
@@ -127,7 +129,7 @@ public final class Language {
 			
 			return list.stream().toArray(size -> new String[size]);
 			
-		} catch(Exception e) {}
+		} catch(Exception e) { }
 		
 		return new String[] {""};
 	}

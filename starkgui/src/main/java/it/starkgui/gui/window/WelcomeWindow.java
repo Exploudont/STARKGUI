@@ -154,7 +154,7 @@ public class WelcomeWindow {
 	}
 	
 	/**
-	 * Update the Screen when the language is changed. 
+	 * Update the screen when the language is changed. 
 	 */
 	public static void updateScreen() {
 		WelcomeLabel.setText(Language.getLabel(Language.WELCOME));

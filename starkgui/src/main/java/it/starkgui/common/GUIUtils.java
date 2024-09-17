@@ -1,11 +1,13 @@
 package it.starkgui.common;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 
 /**
@@ -69,6 +71,20 @@ public final class GUIUtils {
 		frame.setUndecorated(true);
 		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, color));
 		return frame;
+	}
+	
+	/**
+	 * Load an image file.
+	 * 
+	 * @param file_name the file name
+	 * @return the {@code Image} object
+	 */
+	public static Image loadImage(final String file_name) {
+		try {
+			Image img = ImageIO.read(Utils.loadResource(file_name));
+			return img;
+		} catch(Exception e) {}
+		return null;
 	}
 	
 	

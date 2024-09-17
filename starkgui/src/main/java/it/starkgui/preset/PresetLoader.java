@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ public final class PresetLoader {
 	 * @throws IOException if an error occur during the reading process
 	 */
 	public static Preset load(final String name) throws IOException {
-		final InputStream file = Utils.loadFile(name + ".json");
+		final InputStream file = Utils.loadFile("presets/" + name + ".json");
 		
 		final String content = Utils.readAllFile(file);
 		
@@ -70,7 +71,8 @@ public final class PresetLoader {
 	 */
 	public static String[] getAvailablePresets() {
 		try {
-			final BufferedReader br = new BufferedReader(Utils.getFileReader("available presets.txt"));
+			InputStreamReader in_stream = new InputStreamReader(Utils.loadResource("presets/available.txt").openStream());
+			BufferedReader br = new BufferedReader(in_stream);
 			
 			List<String> presets = new ArrayList<>();
 			

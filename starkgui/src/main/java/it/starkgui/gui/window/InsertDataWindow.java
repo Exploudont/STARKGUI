@@ -24,6 +24,7 @@ import it.unicam.quasylab.jspear.controller.NilController;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.JPanel;
 
@@ -95,7 +96,9 @@ public class InsertDataWindow {
 		frame.getContentPane().add(panel);
 		
 		
-		JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		JButton backButton = new JButton();
+		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,11 +110,15 @@ public class InsertDataWindow {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.add(backButton);
 		
-		JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
+		JButton confirmButton;
+		//JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
+		confirmButton = new JButton();
+		confirmButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/confirm.png")));
+		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DataCollector.getInstance().add(date, SliderControllerParser.toDetection(sliderControllers));
-				DetectionWindow.revalidate();
+				DetectionWindow.repaint();
 				backButton.doClick();
 			}
 		});

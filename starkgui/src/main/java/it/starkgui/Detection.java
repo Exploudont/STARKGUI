@@ -36,11 +36,11 @@ public final class Detection {
 	/**
 	 * Return the value of a specific detection parameter.
 	 *
-	 * @param paramter the detection parameter
+	 * @param parameter the detection parameter
 	 * @return the value of a specific detection parameter
 	 */
-	public Double get(final String paramter) {
-		return detections.get(paramter);
+	public Double get(final String parameter) {
+		return detections.get(parameter);
 	}
 	
 	@Override

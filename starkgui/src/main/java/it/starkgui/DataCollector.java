@@ -76,6 +76,26 @@ public final class DataCollector {
 	}
 	
 	/**
+	 * Remove a specific detection object.
+	 * 
+	 * @param date the date
+	 * @param index the index of the detection
+	 */
+	public void remove(final Date date, final int index) {
+		collector.get(date).remove(index);
+	}
+	
+	/**
+	 * Remove a specific detection object.
+	 * 
+	 * @param date the date
+	 * @param detection the detection
+	 */
+	public void remove(final Date date, final Detection detection) {
+		collector.get(date).remove(detection);
+	}
+	
+	/**
 	 * Return all the sample sets.
 	 * 
 	 * @param preset the selected preset

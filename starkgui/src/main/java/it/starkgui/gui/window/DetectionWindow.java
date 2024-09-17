@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 import it.starkgui.DataCollector;
 import it.starkgui.Detection;
@@ -20,11 +21,14 @@ import it.starkgui.preset.Preset;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Date;
+import java.util.List;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -45,7 +49,7 @@ public class DetectionWindow {
 
 	private static Date date;
 	private final Preset preset;
-	private JScrollPane scroller;
+	private static JScrollPane scroller;
 
 	/**
 	 * Create the application.
@@ -53,6 +57,7 @@ public class DetectionWindow {
 	public DetectionWindow(final Date date, final Preset preset) {
 		this.preset = preset;
 		DetectionWindow.date = date;
+		verticalBox = Box.createVerticalBox();
 		initialize();
 	}
 
@@ -69,7 +74,9 @@ public class DetectionWindow {
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
+		JButton backButton = new JButton();
+		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WrittenDatesWindow.revalidate();
@@ -84,7 +91,11 @@ public class DetectionWindow {
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel.add(horizontalGlue);
 		
-		JButton addButton = new JButton(Language.getLabel(Language.INSERT_DATAS));
+		JButton addButton;
+		//JButton addButton = new JButton(Language.getLabel(Language.INSERT_DATAS));
+		addButton = new JButton();
+		addButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/add.png")));
+		GUIUtils.removeDecorations(addButton);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InsertDataWindow win = new InsertDataWindow(date, preset);
@@ -108,46 +119,57 @@ public class DetectionWindow {
 		
 		JPanel tmp = new JPanel();
 		tmp.setLayout(new BoxLayout(tmp, BoxLayout.Y_AXIS));
-		verticalBox = getRelevations(date);
 		scroller = new JScrollPane(verticalBox);
+		updateScroller();
 		tmp.add(scroller);
 		frame.getContentPane().add(tmp, BorderLayout.CENTER);
 	}
 	
-	protected static Box getRelevations(final Date date) {
-		Box verticalBox = Box.createVerticalBox();
-		
-		for(Detection d : DataCollector.getInstance().get(date)) {
-			JSeparator separator = new JSeparator();
-			separator.setOrientation(SwingConstants.HORIZONTAL); 
-			verticalBox.add(separator);
-			verticalBox.add(new DetectionPanelDecorator(d).getPanel());
-			verticalBox.add(Box.createVerticalStrut(40));
-		}
-		
-		return verticalBox;
-	}
-	
 	/**
-	 * Revalidates the component hierarchy up to the nearest validate root. 
+	 * Repaint the component hierarchy up to the nearest validate root. 
 	 */
-	protected static void revalidate() {
+	protected static void repaint() {
 		updateScroller();
-		frame.revalidate();
+		frame.repaint();
 	}
 	
 	private static void updateScroller() {
 		verticalBox.removeAll();
 		
+		int i = 0;
 		for(Detection d : DataCollector.getInstance().get(date)) {
 			JSeparator separator = new JSeparator();
 			separator.setOrientation(SwingConstants.HORIZONTAL); 
 			verticalBox.add(separator);
-			verticalBox.add(new DetectionPanelDecorator(d).getPanel());
+			
+			JPanel panel = createDetectionVoicePanel(d, i);
+			i++;
+			verticalBox.add(panel);
 			verticalBox.add(Box.createVerticalStrut(40));
 		}
 		
 		verticalBox.revalidate();
+		scroller.revalidate();
+	}
+	
+	private static JPanel createDetectionVoicePanel(final Detection detection, final int index) {
+		JPanel panel = new JPanel();
+		
+		panel.add(new DetectionPanelDecorator(detection).getPanel());
+		JButton tmp_button = new JButton();
+		tmp_button.setIcon(new ImageIcon(GUIUtils.loadImage("icons/remove.png")));
+		GUIUtils.removeDecorations(tmp_button);
+		
+		tmp_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DataCollector.getInstance().remove(date, index);
+				DetectionWindow.repaint();
+			}
+		});
+		
+		panel.add(tmp_button);
+		
+		return panel;
 	}
 
 }

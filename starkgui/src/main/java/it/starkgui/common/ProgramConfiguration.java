@@ -88,6 +88,16 @@ public class ProgramConfiguration {
 	}
 	
 	/**
+	 * Return if a parameter is into the configuration.
+	 *
+	 * @param parameter the parameter name
+	 * @return {@code true} only if the parameter is into the configuration, otherwise {@code false}
+	 */
+	public boolean has(final String parameter) {
+		return properties.containsKey(parameter);
+	}
+	
+	/**
 	 * Return an unmodifiable set of parameter from this configuration.
 	 *
 	 * @return return an unmodifiable set of parameter from this configuration.

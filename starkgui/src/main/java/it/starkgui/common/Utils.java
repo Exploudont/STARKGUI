@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URL;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
@@ -29,7 +30,7 @@ public class Utils {
 	 *
 	 * @param file_name the file name
 	 * @return return the file stream
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException if the file can't be found
 	 */
 	public static InputStream loadFile(final String file_name) throws FileNotFoundException {
 		InputStream in = ClassLoader
@@ -40,6 +41,21 @@ public class Utils {
 			throw new FileNotFoundException("Can not find the file.");
 		
 		return in;
+	}
+	
+	/**
+	 * Load a resource file.
+	 * Actually doesn't support loading resources from nested directory
+	 * from a JAR file.
+	 *
+	 * @param file_path the file path
+	 * @return return the file {@code URL}
+	 * @throws FileNotFoundException if the file can't be found
+	 */
+	public static URL loadResource(final String file_path) throws FileNotFoundException {
+		return ClassLoader
+				.getSystemClassLoader()
+				.getResource(file_path);
 	}
 	
 	/**
