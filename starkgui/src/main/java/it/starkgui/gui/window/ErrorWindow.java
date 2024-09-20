@@ -70,12 +70,14 @@ public class ErrorWindow {
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.ERROR));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(Theme.subsubtitleFont);
+		lblNewLabel.setForeground(Theme.titleColor);
 		frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton(Language.getLabel(Language.BACK));
+		btnNewButton.setForeground(Theme.textColor);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -88,6 +90,7 @@ public class ErrorWindow {
 		panel.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel(this.description);
+		lblNewLabel_1.setForeground(Theme.textColor);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblNewLabel_1, BorderLayout.CENTER);
 		

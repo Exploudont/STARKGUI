@@ -29,6 +29,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import java.awt.SystemColor;
 
 
 /**
@@ -88,6 +89,7 @@ public class WelcomeWindow {
 		
 		WelcomeLabel = new JLabel(Language.getLabel(Language.WELCOME));
 		WelcomeLabel.setFont(Theme.titleFont);
+		WelcomeLabel.setForeground(Theme.titleColor);
 		WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(WelcomeLabel, BorderLayout.NORTH);
 		
@@ -98,6 +100,7 @@ public class WelcomeWindow {
 		
 		EnterButton = new JButton(Language.getLabel(Language.ENTER));
 		EnterButton.setFont(Theme.subtitleFont);
+		EnterButton.setForeground(Theme.textColor);
 		GUIUtils.removeDecorations(EnterButton);
 		EnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,6 +128,7 @@ public class WelcomeWindow {
 		
 		panel.add(Box.createHorizontalGlue());
 		LanguageLabel = new JLabel(Language.getLabel(Language.LANGUAGE));
+		LanguageLabel.setForeground(Theme.textColor);
 		panel.add(LanguageLabel);
 		
 		loadLanguageComboBox();
@@ -142,6 +146,7 @@ public class WelcomeWindow {
 	 */
 	private static void loadLanguageComboBox() {
 		LanguageComboBox = new JComboBox();
+		LanguageComboBox.setForeground(Theme.textColor);
 		String[] languages = Language.getAvailable();
 		for(String l : languages)
 			LanguageComboBox.addItem(l);

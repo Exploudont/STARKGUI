@@ -19,7 +19,7 @@ import it.starkgui.common.Theme;
 public class SliderController
 	implements ChangeListener
 {
-	
+
 	/**
 	 * Create a new slider object.
 	 * 
@@ -28,47 +28,35 @@ public class SliderController
 	 * @param max_value the maximum value of the slider
 	 */
 	public SliderController(String text, int min_value, int max_value) {
-		this(text, Font.PLAIN, min_value, max_value, 1);
+		this(text, min_value, max_value, 1);
 	}
 
 	/**
 	 * Create a new slider object.
 	 * 
 	 * @param text the text that will show with the slider
-	 * @param font the font style
-	 * @param min_value the minimum value of the slider
-	 * @param max_value the maximum value of the slider
-	 */
-	public SliderController(String text, int font, int min_value, int max_value) {
-		this(text, font, min_value, max_value, 1);
-	}
-
-	/**
-	 * Create a new slider object.
-	 * 
-	 * @param text the text that will show with the slider
-	 * @param font the font style
 	 * @param min_value the minimum value of the slider
 	 * @param max_value the maximum value of the slider
 	 * @param major_tick the major ticks
 	 */
-	public SliderController(String text, int font, int min_value, int max_value, int major_tick) {
+	public SliderController(String text, int min_value, int max_value, int major_tick) {
 		grid = new GridLayout(0, 4, 0, 0);
 		panel = new JPanel();
 		
 		slider = new JSlider(min_value, max_value, (max_value+min_value)/2);
 		setSliderTick(major_tick);
 		slider.addChangeListener(this);
+		slider.setForeground(Theme.textColor);
 		
 		label_text = new JLabel();
 		label_text.setText(text);
-		//label_text.setFont(new Font("MV Boli", font, 25));
 		label_text.setFont(Theme.sliderFont);
+		label_text.setForeground(Theme.textColor);
 		
 		label_value = new JLabel();
 		label_value.setText("" + slider.getValue());
-		//label_value.setFont(new Font("MV Boli", font, 25));
 		label_value.setFont(Theme.sliderFont);
+		label_value.setForeground(Theme.textColor);
 		label_value.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		panel.setLayout(grid);

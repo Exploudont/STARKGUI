@@ -60,12 +60,15 @@ public class SelectPresetWindow {
 		
 		selectPresetLabel = new JLabel(Language.getLabel(Language.SELECT_PRESET));
 		selectPresetLabel.setFont(Theme.titleFont);
+		selectPresetLabel.setForeground(Theme.titleColor);
 		panel.add(selectPresetLabel);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
-		backButton = new JButton(Language.getLabel(Language.BACK));
+		backButton = new JButton();
+		backButton.setIcon(Theme.backIcon);
+		backButton.setForeground(Theme.textColor);
 		backButton.setFont(Theme.textFont);
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
@@ -100,6 +103,7 @@ public class SelectPresetWindow {
 		for(String presetName : presets) {
 			JButton btn = new JButton(presetName);
 			btn.setFont(Theme.optionFont);
+			btn.setForeground(Theme.textColor);
 			btn.setAlignmentX(0.5f);
 			GUIUtils.removeDecorations(btn);
 			

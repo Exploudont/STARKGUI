@@ -74,6 +74,7 @@ public class WrittenDatesWindow {
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATAS));
 		lblNewLabel.setFont(Theme.subtitleFont);
+		lblNewLabel.setForeground(Theme.subtitleColor);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
@@ -169,6 +170,7 @@ public class WrittenDatesWindow {
 			
 			JButton button = new JButton(str_date + "  (" + collector.get(d).size() + ")");
 			button.setFont(Theme.optionFont);
+			button.setForeground(Theme.textColor);
 			GUIUtils.removeDecorations(button);
 			button.setAlignmentX(0.5f);
 			

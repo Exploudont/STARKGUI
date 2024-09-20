@@ -80,6 +80,7 @@ public class ChooseDateWindow {
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATE));
 		lblNewLabel.setFont(Theme.subsubtitleFont);
+		lblNewLabel.setForeground(Theme.subtitleColor);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
@@ -89,7 +90,6 @@ public class ChooseDateWindow {
 		panel_1.add(Box.createHorizontalStrut(10));
 		
 		JButton backButton = new JButton();
-		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
 		backButton.setIcon(Theme.backIcon);
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
@@ -138,6 +138,7 @@ public class ChooseDateWindow {
 		frame.getContentPane().add(center_panel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel(Language.getLabel(Language.DATE));
+		lblNewLabel_1.setForeground(Theme.textColor);
 		panel_2.add(lblNewLabel_1);
 		
 		textField = new JTextField();
@@ -172,7 +173,7 @@ public class ChooseDateWindow {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("gg-mm-yyyy");
-		lblNewLabel_2.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_2.setForeground(Theme.tipColor);
 		panel_2.add(lblNewLabel_2);
 	}
 

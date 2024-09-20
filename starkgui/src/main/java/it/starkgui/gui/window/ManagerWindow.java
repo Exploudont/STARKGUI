@@ -66,6 +66,7 @@ public class ManagerWindow {
 		
 		titleLabel = new JLabel(Language.getLabel(Language.MANAGEMENT));
 		titleLabel.setFont(Theme.subtitleFont);
+		titleLabel.setForeground(Theme.titleColor);
 		panel.add(titleLabel);
 		
 
@@ -78,6 +79,7 @@ public class ManagerWindow {
 		panel_2.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JButton exportDataButton = new JButton(Language.getLabel(Language.EXPORT));
+		exportDataButton.setForeground(Theme.textColor);
 		exportDataButton.setFont(Theme.optionFont);
 		exportDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,6 +91,7 @@ public class ManagerWindow {
 		
 		JButton insertDataButton = new JButton(Language.getLabel(Language.INSERT_DATAS));
 		insertDataButton.setFont(Theme.optionFont);
+		insertDataButton.setForeground(Theme.textColor);
 		insertDataButton.setContentAreaFilled(false);
 		panel_2.add(insertDataButton);
 		
@@ -115,7 +118,7 @@ public class ManagerWindow {
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		JLabel label = new JLabel(Language.getLabel(Language.SELECTED) + ":  " + presetName);
-		//label.setForeground(Color.LIGHT_GRAY);
+		label.setForeground(Theme.textColor);
 		panel.add(label);
 		
 		return panel;

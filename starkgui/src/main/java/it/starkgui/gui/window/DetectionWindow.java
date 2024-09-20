@@ -114,6 +114,7 @@ public class DetectionWindow {
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.DATE) + "  " + formatter.format(DetectionWindow.date));
 		lblNewLabel.setFont(Theme.subtitleFont);
+		lblNewLabel.setForeground(Theme.subtitleColor);
 		panel_1.add(lblNewLabel);
 		
 		JPanel tmp = new JPanel();

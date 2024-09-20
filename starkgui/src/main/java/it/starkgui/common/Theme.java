@@ -1,7 +1,9 @@
 package it.starkgui.common;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -28,6 +30,7 @@ public final class Theme  {
 	public static final Color titleColor;
 	public static final Color subtitleColor;
 	public static final Color textColor;
+	public static final Color tipColor;
 	
 	public static final ImageIcon backIcon;
 	public static final ImageIcon confirmIcon;
@@ -107,11 +110,17 @@ public final class Theme  {
 	/**
 	 * Load an image icon.
 	 * 
-	 * @param image the image name
+	 * @param data the image data
 	 * @return the loaded {@code ImageIcon} object
 	 */
-	private static ImageIcon loadImageIcon(final String image) {
-		return new ImageIcon(GUIUtils.loadImage("icons/" + image));
+	private static ImageIcon loadImageIcon(final String data) {
+		Scanner scanner = new Scanner(data);
+		
+		Image img = GUIUtils.loadImage("icons/" + scanner.next());
+		Dimension dim = new Dimension(scanner.nextInt(), scanner.nextInt());
+		Image scaled = img.getScaledInstance(dim.width, dim.height,  java.awt.Image.SCALE_SMOOTH);
+		
+		return new ImageIcon(scaled);
 	}
 	
 	
@@ -128,6 +137,7 @@ public final class Theme  {
 		titleColor = parseColor(prop.getProperty("TITLE_COLOR"));
 		subtitleColor = parseColor(prop.getProperty("SUBTITLE_COLOR"));
 		textColor = parseColor(prop.getProperty("TEXT_COLOR"));
+		tipColor = parseColor(prop.getProperty("TIP_COLOR"));
 		
 		backIcon = loadImageIcon(prop.getProperty("BACK_ICON"));
 		addIcon = loadImageIcon(prop.getProperty("ADD_ICON"));

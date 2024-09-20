@@ -86,6 +86,7 @@ public class InsertDataWindow {
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATAS));
 		lblNewLabel.setFont(Theme.subtitleFont);
+		lblNewLabel.setForeground(Theme.titleColor);
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		

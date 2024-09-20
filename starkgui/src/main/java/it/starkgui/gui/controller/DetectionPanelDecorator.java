@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.starkgui.Detection;
+import it.starkgui.common.Theme;
 
 
 /**
@@ -40,8 +41,16 @@ public final class DetectionPanelDecorator {
 		
 		for(String parameter : detection.getParameters()) {
 			JPanel tmp = new JPanel();
-			tmp.add(new JLabel(parameter));
-			tmp.add(new JLabel(detection.get(parameter) + ""));
+			
+			JLabel lblParameter = new JLabel(parameter);
+			lblParameter.setForeground(Theme.textColor);
+			
+			tmp.add(lblParameter);
+			
+			JLabel lbldetection = new JLabel(detection.get(parameter) + "");
+			lbldetection.setForeground(Theme.textColor);
+			tmp.add(lbldetection);
+			
 			verticalBox.add(tmp);
 		}
 		
