@@ -70,7 +70,7 @@ La javadoc verrà generata all'interno della cartella `target\reports\apidocs`.
 Per eseguire il programma sarà necessario recarsi all'interno della cartella di progetto, spostarsi all'intenro della cartella `target` e lanciare il seguente comando da terminare:
 
 ``` Shell
-java -jar tesi-0.0.1-SNAPSHOT.jar
+java -jar starkgui-x.x.x-Alpha.jar
 ```
 
 
