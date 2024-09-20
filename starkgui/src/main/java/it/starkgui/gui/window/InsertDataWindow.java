@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import it.starkgui.DataCollector;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 import it.starkgui.gui.controller.PresetController;
 import it.starkgui.gui.controller.SliderController;
 import it.starkgui.gui.controller.SliderControllerParser;
@@ -84,7 +85,7 @@ public class InsertDataWindow {
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATAS));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setFont(Theme.subtitleFont);
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -96,9 +97,8 @@ public class InsertDataWindow {
 		frame.getContentPane().add(panel);
 		
 		
-		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
 		JButton backButton = new JButton();
-		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		backButton.setIcon(Theme.backIcon);
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,9 +111,8 @@ public class InsertDataWindow {
 		panel.add(backButton);
 		
 		JButton confirmButton;
-		//JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
 		confirmButton = new JButton();
-		confirmButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/confirm.png")));
+		confirmButton.setIcon(Theme.confirmIcon);
 		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -12,6 +12,7 @@ import javax.swing.LayoutFocusTraversalPolicy;
 
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 import it.starkgui.preset.Preset;
 import it.starkgui.preset.PresetLoader;
 
@@ -58,14 +59,14 @@ public class SelectPresetWindow {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		selectPresetLabel = new JLabel(Language.getLabel(Language.SELECT_PRESET));
-		selectPresetLabel.setFont(new Font("Tahoma", Font.PLAIN, 72));
+		selectPresetLabel.setFont(Theme.titleFont);
 		panel.add(selectPresetLabel);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
 		backButton = new JButton(Language.getLabel(Language.BACK));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		backButton.setFont(Theme.textFont);
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +99,7 @@ public class SelectPresetWindow {
 		
 		for(String presetName : presets) {
 			JButton btn = new JButton(presetName);
-			btn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			btn.setFont(Theme.optionFont);
 			btn.setAlignmentX(0.5f);
 			GUIUtils.removeDecorations(btn);
 			

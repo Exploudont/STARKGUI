@@ -23,6 +23,8 @@ import javax.swing.ImageIcon;
 
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
+
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,7 +79,7 @@ public class ChooseDateWindow {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATE));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setFont(Theme.subsubtitleFont);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
@@ -88,7 +90,7 @@ public class ChooseDateWindow {
 		
 		JButton backButton = new JButton();
 		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
-		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		backButton.setIcon(Theme.backIcon);
 		GUIUtils.removeDecorations(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,9 +103,8 @@ public class ChooseDateWindow {
 		panel_1.add(Box.createHorizontalGlue());
 		
 		JButton confirmButton;
-		//JButton confirmButton = new JButton(Language.getLabel(Language.CONFIRM));
 		confirmButton = new JButton();
-		confirmButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/confirm.png")));
+		confirmButton.setIcon(Theme.confirmIcon);
 		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,9 +127,15 @@ public class ChooseDateWindow {
 		
 		panel_1.add(Box.createHorizontalStrut(10));
 		
+		JPanel center_panel = new JPanel();
+		center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));
+		center_panel.add(Box.createHorizontalStrut(5));
+		
 		JPanel panel_2 = new JPanel();
-		frame.getContentPane().add(panel_2, BorderLayout.CENTER);
+		center_panel.add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		frame.getContentPane().add(center_panel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel(Language.getLabel(Language.DATE));
 		panel_2.add(lblNewLabel_1);

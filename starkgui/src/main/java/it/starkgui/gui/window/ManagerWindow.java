@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import it.starkgui.DataCollector;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 import it.starkgui.preset.Preset;
 import it.starkgui.preset.PresetLoader;
 
@@ -64,7 +65,7 @@ public class ManagerWindow {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		titleLabel = new JLabel(Language.getLabel(Language.MANAGEMENT));
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		titleLabel.setFont(Theme.subtitleFont);
 		panel.add(titleLabel);
 		
 
@@ -77,7 +78,7 @@ public class ManagerWindow {
 		panel_2.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JButton exportDataButton = new JButton(Language.getLabel(Language.EXPORT));
-		exportDataButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		exportDataButton.setFont(Theme.optionFont);
 		exportDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("export operations");
@@ -87,7 +88,7 @@ public class ManagerWindow {
 		panel_2.add(exportDataButton);
 		
 		JButton insertDataButton = new JButton(Language.getLabel(Language.INSERT_DATAS));
-		insertDataButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		insertDataButton.setFont(Theme.optionFont);
 		insertDataButton.setContentAreaFilled(false);
 		panel_2.add(insertDataButton);
 		

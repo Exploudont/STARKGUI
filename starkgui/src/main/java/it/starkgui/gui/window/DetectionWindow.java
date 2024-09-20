@@ -15,6 +15,7 @@ import it.starkgui.DataCollector;
 import it.starkgui.Detection;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 import it.starkgui.gui.controller.DetectionPanelDecorator;
 import it.starkgui.preset.Preset;
 
@@ -74,9 +75,8 @@ public class DetectionWindow {
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
 		JButton backButton = new JButton();
-		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		backButton.setIcon(Theme.backIcon);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WrittenDatesWindow.revalidate();
@@ -92,9 +92,8 @@ public class DetectionWindow {
 		panel.add(horizontalGlue);
 		
 		JButton addButton;
-		//JButton addButton = new JButton(Language.getLabel(Language.INSERT_DATAS));
 		addButton = new JButton();
-		addButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/add.png")));
+		addButton.setIcon(Theme.addIcon);
 		GUIUtils.removeDecorations(addButton);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,7 +113,7 @@ public class DetectionWindow {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.DATE) + "  " + formatter.format(DetectionWindow.date));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblNewLabel.setFont(Theme.subtitleFont);
 		panel_1.add(lblNewLabel);
 		
 		JPanel tmp = new JPanel();
@@ -157,7 +156,7 @@ public class DetectionWindow {
 		
 		panel.add(new DetectionPanelDecorator(detection).getPanel());
 		JButton tmp_button = new JButton();
-		tmp_button.setIcon(new ImageIcon(GUIUtils.loadImage("icons/remove.png")));
+		tmp_button.setIcon(Theme.removeIcon);
 		GUIUtils.removeDecorations(tmp_button);
 		
 		tmp_button.addActionListener(new ActionListener() {

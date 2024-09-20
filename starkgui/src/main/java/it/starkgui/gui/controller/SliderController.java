@@ -5,6 +5,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import it.starkgui.common.Theme;
+
 
 /**
  * Slider controller.
@@ -60,11 +62,13 @@ public class SliderController
 		
 		label_text = new JLabel();
 		label_text.setText(text);
-		label_text.setFont(new Font("MV Boli", font, 25));
+		//label_text.setFont(new Font("MV Boli", font, 25));
+		label_text.setFont(Theme.sliderFont);
 		
 		label_value = new JLabel();
 		label_value.setText("" + slider.getValue());
-		label_value.setFont(new Font("MV Boli", font, 25));
+		//label_value.setFont(new Font("MV Boli", font, 25));
+		label_value.setFont(Theme.sliderFont);
 		label_value.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		panel.setLayout(grid);

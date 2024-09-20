@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import it.starkgui.DataCollector;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 import it.starkgui.preset.Preset;
 import it.unicam.quasylab.jspear.SampleSet;
 import it.unicam.quasylab.jspear.SystemState;
@@ -72,7 +73,7 @@ public class WrittenDatesWindow {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.INSERT_DATAS));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblNewLabel.setFont(Theme.subtitleFont);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
@@ -82,9 +83,9 @@ public class WrittenDatesWindow {
 		JButton backButton;
 		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
 		backButton = new JButton();
-		backButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/back.png")));
+		backButton.setIcon(Theme.backIcon);
 		GUIUtils.removeDecorations(backButton);
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		backButton.setFont(Theme.textFont);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManagerWindow.frame.setBounds(frame.getBounds());
@@ -100,7 +101,7 @@ public class WrittenDatesWindow {
 		JButton createRelevationButton;
 		//createRelevationButton = new JButton(Language.getLabel(Language.CREATE_DATA_RELEVATION));
 		createRelevationButton = new JButton();
-		createRelevationButton.setIcon(new ImageIcon(GUIUtils.loadImage("icons/add.png")));
+		createRelevationButton.setIcon(Theme.addIcon);
 		GUIUtils.removeDecorations(createRelevationButton);
 		
 		createRelevationButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -167,7 +168,7 @@ public class WrittenDatesWindow {
 			String str_date = formatter.format(d);
 			
 			JButton button = new JButton(str_date + "  (" + collector.get(d).size() + ")");
-			button.setFont(new Font("Tahoma", Font.BOLD, 20));
+			button.setFont(Theme.optionFont);
 			GUIUtils.removeDecorations(button);
 			button.setAlignmentX(0.5f);
 			

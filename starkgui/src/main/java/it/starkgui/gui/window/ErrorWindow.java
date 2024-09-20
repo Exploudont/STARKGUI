@@ -10,7 +10,9 @@ import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
 
+import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
+import it.starkgui.common.Theme;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -54,6 +56,7 @@ public class ErrorWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		GUIUtils.removeBorders(frame);
 		frame.setResizable(false);
 		
 		Rectangle rec = caller.getBounds();
@@ -66,7 +69,7 @@ public class ErrorWindow {
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.ERROR));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setFont(Theme.subsubtitleFont);
 		frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();

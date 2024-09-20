@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.ProgramConfiguration;
+import it.starkgui.common.Theme;
 
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -86,7 +87,7 @@ public class WelcomeWindow {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		WelcomeLabel = new JLabel(Language.getLabel(Language.WELCOME));
-		WelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 72));
+		WelcomeLabel.setFont(Theme.titleFont);
 		WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(WelcomeLabel, BorderLayout.NORTH);
 		
@@ -96,7 +97,7 @@ public class WelcomeWindow {
 		
 		
 		EnterButton = new JButton(Language.getLabel(Language.ENTER));
-		EnterButton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		EnterButton.setFont(Theme.subtitleFont);
 		GUIUtils.removeDecorations(EnterButton);
 		EnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
