@@ -1,11 +1,10 @@
 package it.starkgui.gui.controller;
 
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
 
-import it.starkgui.common.Theme;
+import it.starkgui.gui.view.SliderView;
 
 
 /**
@@ -13,15 +12,13 @@ import it.starkgui.common.Theme;
  * Used to aggregate basic components into one controller.
  *
  * @author Daniele Longobardi (matricola 737547)
- * @version 1.0.0
+ * @version 1.0.1
  * @since JDK 17
  */
-public class SliderController
-	implements ChangeListener
-{
-
+public final class SliderController {
+	
 	/**
-	 * Create a new slider object.
+	 * Create a {@code SliderController} object.
 	 * 
 	 * @param text the text that will show with the slider
 	 * @param min_value the minimum value of the slider
@@ -32,38 +29,18 @@ public class SliderController
 	}
 
 	/**
-	 * Create a new slider object.
+	 * Create a {@code SliderController} object.
 	 * 
 	 * @param text the text that will show with the slider
 	 * @param min_value the minimum value of the slider
 	 * @param max_value the maximum value of the slider
-	 * @param major_tick the major ticks
+	 * @param major_tick the slider major tick value
 	 */
 	public SliderController(String text, int min_value, int max_value, int major_tick) {
-		grid = new GridLayout(0, 4, 0, 0);
-		panel = new JPanel();
-		
+		this.name = text;
 		slider = new JSlider(min_value, max_value, (max_value+min_value)/2);
 		setSliderTick(major_tick);
-		slider.addChangeListener(this);
-		slider.setForeground(Theme.textColor);
-		
-		label_text = new JLabel();
-		label_text.setText(text);
-		label_text.setFont(Theme.sliderFont);
-		label_text.setForeground(Theme.textColor);
-		
-		label_value = new JLabel();
-		label_value.setText("" + slider.getValue());
-		label_value.setFont(Theme.sliderFont);
-		label_value.setForeground(Theme.textColor);
-		label_value.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		panel.setLayout(grid);
-		panel.add(slider);
-		panel.add(Box.createHorizontalStrut(0));
-		panel.add(label_text);
-		panel.add(label_value);
+		this.view = new SliderView(this.name, this.slider);
 	}
 	
 	/**
@@ -76,19 +53,21 @@ public class SliderController
 		slider.setMajorTickSpacing(major_tick_value);
 		slider.setPaintLabels(true);
 	}
-
+	
 	/**
-	 * Return the panel that contains all the slider content.
+	 * Return the view object.
 	 * 
-	 * @return return the panel that contains all the slider content
+	 * @return the view object
 	 */
-	public JPanel getPanel() {
-		return this.panel;
+	public SliderView getView() {
+		return this.view;
 	}
 	
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		label_value.setText("" + slider.getValue());
+	/**
+	 * Update the view object.
+	 */
+	public void updateView() {
+		this.view.update();
 	}
 	
 	/**
@@ -97,23 +76,20 @@ public class SliderController
 	 * @return the selected value
 	 */
 	public Integer getValue() {
-		return slider.getValue();
+		return this.slider.getValue();
 	}
 
 	/**
-	 * Return the parameter name.
+	 * Return the associated name value.
 	 * 
-	 * @return the parameter name
+	 * @return the associated name
 	 */
 	public String getName() {
-		return label_text.getText();
+		return this.name;
 	}
 	
-	
-	private JPanel panel;
-	private GridLayout grid;
-	private JLabel label_text;
-	private JLabel label_value;
+	private String name;
 	private JSlider slider;
+	private SliderView view;
 }
 

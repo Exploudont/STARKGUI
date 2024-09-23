@@ -1,4 +1,4 @@
-package it.starkgui.gui.controller;
+package it.starkgui.gui.parser;
 
 import java.util.Set;
 
@@ -20,15 +20,27 @@ import it.unicam.quasylab.jspear.ds.DataStateFunction;
  * @since JDK 17
  * @version 1.0.0
  */
-public final class DetectionSystemStateAdapter {
+public final class DetectionToSystemStateParser {
 	
 	/**
-	 * Create a new {@code DetectionSystemStateDecorator} object.
-	 * 
-	 * @param detection the detection
+	 * Don't let anyone instance this class.
 	 */
-	public DetectionSystemStateAdapter(final Detection detection) {
-		this.detection = detection;
+	private DetectionToSystemStateParser() { }
+	
+	/**
+	 * Return the generated system state value.
+	 * 
+	 * @param preset the specific preset
+	 * @param detection the detection
+	 * @return the generated system state 
+	 */
+	public static SystemState toSystemState(final Preset preset, final Detection detection) {
+		DataState state = toDataState(preset, detection);
+		
+		NilController controller = new NilController();
+		DataStateFunction function = (rg, ds) -> ds;
+		
+		return new ControlledSystem(controller, function, state);
 	}
 	
 	/**
@@ -37,7 +49,7 @@ public final class DetectionSystemStateAdapter {
 	 * @param preset the specific preset
 	 * @return the generated data state 
 	 */
-	protected DataState toDataState(final Preset preset) {
+	protected static DataState toDataState(final Preset preset, final Detection detection) {
 		final Set<String> parameters = detection.getParameters();
 		
 		double datas[] = new double[parameters.size()];
@@ -55,22 +67,4 @@ public final class DetectionSystemStateAdapter {
 		
 		return ds;
 	}
-	
-	/**
-	 * Return the generated system state value.
-	 * 
-	 * @param preset the specific preset
-	 * @return the generated system state 
-	 */
-	public SystemState toSystemState(final Preset preset) {
-		DataState state = this.toDataState(preset);
-		
-		NilController controller = new NilController();
-		DataStateFunction function = (rg, ds) -> ds;
-		
-		return new ControlledSystem(controller, function, state);
-	}
-	
-	private final Detection detection;
-
 }

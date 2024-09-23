@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.SortedMap;
 
-import it.starkgui.gui.controller.DetectionSystemStateAdapter;
+import it.starkgui.gui.parser.DetectionToSystemStateParser;
 import it.starkgui.preset.Preset;
 import it.unicam.quasylab.jspear.SampleSet;
 import it.unicam.quasylab.jspear.SystemState;
@@ -110,8 +110,7 @@ public final class DataCollector {
 			
 			for(Detection detection : collector.get(d)) {
 				System.out.println(detection.toString());
-				sampleSet.add(new DetectionSystemStateAdapter(detection)
-						.toSystemState(preset));
+				sampleSet.add(DetectionToSystemStateParser.toSystemState(preset, detection));
 			}
 				
 			list.add(sampleSet);

@@ -34,7 +34,7 @@ import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
 import it.starkgui.gui.controller.PresetController;
 import it.starkgui.gui.controller.SliderController;
-import it.starkgui.gui.controller.SliderControllerParser;
+import it.starkgui.gui.parser.SliderControllerParser;
 
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -137,7 +137,7 @@ public class InsertDataWindow {
 		
 		for(SliderController slider : sliderControllers) {
 			verticalBox.add(Box.createVerticalStrut(70));
-			verticalBox.add(slider.getPanel());
+			verticalBox.add(slider.getView().getPanel());
 		}
 		
 		verticalBox.add(Box.createVerticalStrut(70));

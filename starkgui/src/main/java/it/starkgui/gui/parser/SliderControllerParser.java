@@ -1,4 +1,4 @@
-package it.starkgui.gui.controller;
+package it.starkgui.gui.parser;
 
 import java.util.Arrays;
 
@@ -12,6 +12,7 @@ import it.unicam.quasylab.jspear.ds.DataState;
 import it.unicam.quasylab.jspear.ds.DataStateFunction;
 
 import it.starkgui.Detection;
+import it.starkgui.gui.controller.SliderController;
 
 /**
  * Parser for {@code SliderController} objects.

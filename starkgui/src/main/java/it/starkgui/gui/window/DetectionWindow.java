@@ -16,7 +16,7 @@ import it.starkgui.Detection;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
-import it.starkgui.gui.controller.DetectionPanelDecorator;
+import it.starkgui.gui.view.DetectionView;
 import it.starkgui.preset.Preset;
 
 import javax.swing.JLabel;
@@ -155,7 +155,8 @@ public class DetectionWindow {
 	private static JPanel createDetectionVoicePanel(final Detection detection, final int index) {
 		JPanel panel = new JPanel();
 		
-		panel.add(new DetectionPanelDecorator(detection).getPanel());
+		DetectionView view = new DetectionView(detection);
+		panel.add(view.getPanel());
 		JButton tmp_button = new JButton();
 		tmp_button.setIcon(Theme.removeIcon);
 		GUIUtils.removeDecorations(tmp_button);

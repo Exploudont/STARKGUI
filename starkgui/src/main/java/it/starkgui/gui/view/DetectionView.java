@@ -1,8 +1,5 @@
-package it.starkgui.gui.controller;
+package it.starkgui.gui.view;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,32 +7,29 @@ import javax.swing.JPanel;
 import it.starkgui.Detection;
 import it.starkgui.common.Theme;
 
-
 /**
- * Provide to some utilities methods used to visualize a {@code Detection} object.
- * 
- * @author  Daniele Longobardi (matricola 737547)
- * @since JDK 17
+ * View class for {@code Detection} objects.
+ *
+ * @author Daniele Longobardi (matricola 737547)
  * @version 1.0.0
+ * @since JDK 17
  */
-public final class DetectionPanelDecorator {
-	
+public final class DetectionView {
 	/**
 	 * Create a new {@code DetectionPanelDecorator} object.
 	 * 
 	 * @param detection the detection
 	 */
-	public DetectionPanelDecorator(final Detection detection) {
+	public DetectionView(final Detection detection) {
 		this.detection = detection;
+		initialize();
 	}
-
+	
 	/**
-	 * Return the generated panel.
-	 * 
-	 * @return the generated panel
+	 * Initialize the current object.
 	 */
-	public JPanel getPanel() {
-		JPanel panel = new JPanel();
+	private void initialize() {
+		panel = new JPanel();
 		
 		Box verticalBox = Box.createVerticalBox();
 		
@@ -55,10 +49,24 @@ public final class DetectionPanelDecorator {
 		}
 		
 		panel.add(verticalBox);
-		
+	}
+
+	/**
+	 * Return the generated panel.
+	 * 
+	 * @return the generated panel
+	 */
+	public JPanel getPanel() {
 		return panel;
 	}
 	
+	/**
+	 * Update the current panel.
+	 */
+	public void update() {
+		this.panel.revalidate();
+	}
+	
+	private JPanel panel;
 	private final Detection detection;
-
 }

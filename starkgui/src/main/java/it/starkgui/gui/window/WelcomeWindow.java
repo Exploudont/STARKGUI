@@ -66,14 +66,14 @@ public class WelcomeWindow {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
 	public WelcomeWindow() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

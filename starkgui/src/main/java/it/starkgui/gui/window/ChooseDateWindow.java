@@ -108,7 +108,7 @@ public class ChooseDateWindow {
 		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SimpleDateFormat  formatter = new SimpleDateFormat("dd-MM-yyyy");
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				
 				Date date = null;
 				
@@ -158,12 +158,11 @@ public class ChooseDateWindow {
 				Runnable doAssist = new Runnable() {
                     @Override
                     public void run() {
+                    	// TODO: usare un'unica regular expression
                         String input = textField.getText();
-                        if (input.matches("^[0-9]{2}")) {
+                        
+                        if (input.matches("^[0-9]{2}") || input.matches("^[0-9]{2}-[0-9]{2}"))
                         	textField.setText(input + "-");
-                        } else if (input.matches("^[0-9]{2}-[0-9]{2}")) {
-                        	textField.setText(input + "-");
-                        }
                     }
                 };
                 SwingUtilities.invokeLater(doAssist);
