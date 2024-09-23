@@ -80,6 +80,7 @@ public class InsertDataWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
@@ -104,8 +105,8 @@ public class InsertDataWindow {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DetectionWindow.frame.setBounds(frame.getBounds());
-				frame.setVisible(false);
 				DetectionWindow.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));

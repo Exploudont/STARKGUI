@@ -51,6 +51,7 @@ public class SelectPresetWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -75,8 +76,8 @@ public class SelectPresetWindow {
 			public void actionPerformed(ActionEvent e) {
 				WelcomeWindow.frame.setBounds(SelectPresetWindow.frame.getBounds());
 				
-				SelectPresetWindow.frame.setVisible(false);
 				WelcomeWindow.frame.setVisible(true);
+				SelectPresetWindow.frame.setVisible(false);
 			}
 		});
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -114,8 +115,8 @@ public class SelectPresetWindow {
 						ManagerWindow win = new ManagerWindow(presetName);
 					
 						ManagerWindow.frame.setBounds(SelectPresetWindow.frame.getBounds());
-						SelectPresetWindow.frame.setVisible(false);
 						ManagerWindow.frame.setVisible(true);
+						SelectPresetWindow.frame.setVisible(false);
 					} catch(Exception exc) {
 						ErrorWindow win = new ErrorWindow(frame, WelcomeWindow.frame, "PRESET_ERROR");
 					}

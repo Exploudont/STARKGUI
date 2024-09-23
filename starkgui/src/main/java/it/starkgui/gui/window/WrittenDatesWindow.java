@@ -65,6 +65,7 @@ public class WrittenDatesWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -82,7 +83,6 @@ public class WrittenDatesWindow {
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
 		JButton backButton;
-		//JButton backButton = new JButton(Language.getLabel(Language.BACK));
 		backButton = new JButton();
 		backButton.setIcon(Theme.backIcon);
 		GUIUtils.removeDecorations(backButton);
@@ -90,8 +90,8 @@ public class WrittenDatesWindow {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManagerWindow.frame.setBounds(frame.getBounds());
-				frame.setVisible(false);
 				ManagerWindow.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		panel_1.add(backButton);
@@ -100,7 +100,6 @@ public class WrittenDatesWindow {
 		panel_1.add(horizontalGlue);
 		
 		JButton createRelevationButton;
-		//createRelevationButton = new JButton(Language.getLabel(Language.CREATE_DATA_RELEVATION));
 		createRelevationButton = new JButton();
 		createRelevationButton.setIcon(Theme.addIcon);
 		GUIUtils.removeDecorations(createRelevationButton);
@@ -178,8 +177,8 @@ public class WrittenDatesWindow {
 				public void actionPerformed(ActionEvent e) {
 					DetectionWindow win = new DetectionWindow(d, preset);
 					DetectionWindow.frame.setBounds(frame.getBounds());
-					frame.setVisible(false);
 					DetectionWindow.frame.setVisible(true);
+					frame.setVisible(false);
 				}
 			});
 			

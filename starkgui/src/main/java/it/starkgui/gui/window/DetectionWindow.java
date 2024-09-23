@@ -67,6 +67,7 @@ public class DetectionWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -81,8 +82,8 @@ public class DetectionWindow {
 			public void actionPerformed(ActionEvent e) {
 				WrittenDatesWindow.revalidate();
 				WrittenDatesWindow.frame.setBounds(frame.getBounds());
-				frame.setVisible(false);
 				WrittenDatesWindow.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		GUIUtils.removeDecorations(backButton);
@@ -100,9 +101,8 @@ public class DetectionWindow {
 				InsertDataWindow win = new InsertDataWindow(date, preset);
 				
 				InsertDataWindow.frame.setBounds(frame.getBounds());
-				frame.setVisible(false);
 				InsertDataWindow.frame.setVisible(true);
-				
+				frame.setVisible(false);
 			}
 		});
 		panel.add(addButton);

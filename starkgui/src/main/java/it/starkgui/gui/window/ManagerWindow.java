@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import it.starkgui.DataCollector;
+import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
 import it.starkgui.preset.Preset;
@@ -57,6 +58,7 @@ public class ManagerWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -102,8 +104,8 @@ public class ManagerWindow {
 				WrittenDatesWindow win = new WrittenDatesWindow(preset);
 				
 				WrittenDatesWindow.frame.setBounds(frame.getBounds());
-				frame.setVisible(false);
 				WrittenDatesWindow.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 	}

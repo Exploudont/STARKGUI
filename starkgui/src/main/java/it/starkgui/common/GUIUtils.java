@@ -1,8 +1,6 @@
 package it.starkgui.common;
 
-import java.awt.Font;
 import java.awt.Image;
-import java.io.IOException;
 import java.awt.Color;
 
 import javax.swing.JButton;
@@ -85,5 +83,17 @@ public final class GUIUtils {
 			return img;
 		} catch(Exception e) {}
 		return null;
+	}
+	
+	public static Image getAppIcon() {
+		return appIcon;
+	}
+	
+	private static Image appIcon;
+	
+	static {
+		try {
+			appIcon = loadImage(ProgramConfiguration.getInstance().getValue("APP_ICON"));
+		} catch(Exception e) { }
 	}
 }

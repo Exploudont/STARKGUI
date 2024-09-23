@@ -79,6 +79,7 @@ public class WelcomeWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(GUIUtils.getAppIcon());
 		
 		int width = Integer.parseInt(ProgramConfiguration.getInstance().getValue("DEFAULT_WIDTH"));
 		int height = Integer.parseInt(ProgramConfiguration.getInstance().getValue("DEFAULT_HEIGHT"));
@@ -108,8 +109,8 @@ public class WelcomeWindow {
 				
 				SelectPresetWindow.frame.setBounds(WelcomeWindow.frame.getBounds());
 				
-				WelcomeWindow.frame.setVisible(false);
 				SelectPresetWindow.frame.setVisible(true);
+				WelcomeWindow.frame.setVisible(false);
 			}
 		});
 		frame.getContentPane().add(EnterButton);

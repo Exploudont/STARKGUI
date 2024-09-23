@@ -48,6 +48,7 @@ public final class Language {
 	public static final int INVALID_DATE;
 
 	
+	// TODO: modificare la lunghezza
 	private static final int label_count = 30;
 	
 	
