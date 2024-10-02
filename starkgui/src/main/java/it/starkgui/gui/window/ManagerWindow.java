@@ -85,7 +85,11 @@ public class ManagerWindow {
 		exportDataButton.setFont(Theme.optionFont);
 		exportDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("export operations");
+				ReportData win = new ReportData(preset, DataCollector.getInstance());
+				
+				ReportData.frame.setBounds(frame.getBounds());
+				ReportData.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		exportDataButton.setContentAreaFilled(false);

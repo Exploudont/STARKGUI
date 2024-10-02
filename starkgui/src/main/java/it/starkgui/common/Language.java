@@ -46,6 +46,11 @@ public final class Language {
 	public static final int INSERT_DATE;
 	public static final int DATE;
 	public static final int INVALID_DATE;
+	public static final int INSERT_PERIOD;
+	public static final int PERIOD;
+	public static final int STARTING_DATE;
+	public static final int ENDING_DATE;
+	public static final int INVALID_PERIOD;
 
 	
 	// TODO: modificare la lunghezza
@@ -111,6 +116,11 @@ public final class Language {
 		labels[INSERT_DATE] = prop.getProperty("INSERT_DATE");
 		labels[DATE] = prop.getProperty("DATE");
 		labels[INVALID_DATE] = prop.getProperty("INVALID_DATE");
+		labels[INSERT_PERIOD] = prop.getProperty("INSERT_PERIOD");
+		labels[PERIOD] = prop.getProperty("PERIOD");
+		labels[STARTING_DATE] = prop.getProperty("STARTING_DATE");
+		labels[ENDING_DATE] = prop.getProperty("ENDING_DATE");
+		labels[INVALID_PERIOD] = prop.getProperty("INVALID_PERIOD");
 	}
 	
 	/**
@@ -156,6 +166,11 @@ public final class Language {
 		INSERT_DATE = 14;
 		DATE = 15;
 		INVALID_DATE = 16;
+		INSERT_PERIOD = 17;
+		PERIOD = 18;
+		STARTING_DATE = 19;
+		ENDING_DATE = 20;
+		INVALID_PERIOD = 21;
 
 
 		labels = new String[label_count];

@@ -4,7 +4,7 @@
 
   <groupId>it.starkgui</groupId>
   <artifactId>starkgui</artifactId>
-  <version>0.0.5-Alpha</version>
+  <version>0.0.6-Alpha</version>
   <packaging>jar</packaging>
 
   <name>starkgui</name>

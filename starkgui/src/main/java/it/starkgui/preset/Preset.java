@@ -38,6 +38,10 @@ public final class Preset {
 			throw new IllegalArgumentException();
 		
 		this.parameters = parameters;
+		this.names = parameters
+				.keySet()
+				.stream()
+				.toArray(size -> new String[size]);
 	}
 	
 	/**
@@ -56,10 +60,7 @@ public final class Preset {
 	 * @return the parameter's variable names
 	 */
 	public String[] getNames() {
-		return parameters
-				.keySet()
-				.stream()
-				.toArray(size -> new String[size]);
+		return this.names;
 	}
 	
 	@Override
@@ -72,6 +73,6 @@ public final class Preset {
 				.toString();
 	}
 	
-	
+	private final String[] names;
 	private final Map<String, Parameter> parameters;
 }

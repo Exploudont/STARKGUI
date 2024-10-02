@@ -110,10 +110,16 @@ public class InsertDataWindow {
 			}
 		});
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+	
+		panel.add(Box.createHorizontalGlue());
+		
 		panel.add(backButton);
+		
+		panel.add(Box.createHorizontalGlue());
 		
 		JButton confirmButton;
 		confirmButton = new JButton();
+		confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		confirmButton.setIcon(Theme.confirmIcon);
 		GUIUtils.removeDecorations(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
@@ -123,8 +129,9 @@ public class InsertDataWindow {
 				backButton.doClick();
 			}
 		});
-		confirmButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.add(confirmButton);
+		
+		panel.add(Box.createHorizontalGlue());
 	}
 	
 	/**

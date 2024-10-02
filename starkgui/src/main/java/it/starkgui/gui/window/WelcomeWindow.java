@@ -37,7 +37,7 @@ import java.awt.SystemColor;
  * 
  * @author Daniele Longobardi (matricola 737547)
  * @version 1.0.0
- * @since JDK 17 
+ * @since JDK 17
  */
 public class WelcomeWindow {
 

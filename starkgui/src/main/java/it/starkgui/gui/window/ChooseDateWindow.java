@@ -87,7 +87,7 @@ public class ChooseDateWindow {
 		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
-		panel_1.add(Box.createHorizontalStrut(10));
+		panel_1.add(Box.createHorizontalGlue());
 		
 		JButton backButton = new JButton();
 		backButton.setIcon(Theme.backIcon);
@@ -100,6 +100,7 @@ public class ChooseDateWindow {
 		GUIUtils.removeDecorations(backButton);
 		panel_1.add(backButton);
 		
+		panel_1.add(Box.createHorizontalGlue());
 		panel_1.add(Box.createHorizontalGlue());
 		
 		JButton confirmButton;
@@ -125,7 +126,7 @@ public class ChooseDateWindow {
 		});
 		panel_1.add(confirmButton);
 		
-		panel_1.add(Box.createHorizontalStrut(10));
+		panel_1.add(Box.createHorizontalGlue());
 		
 		JPanel center_panel = new JPanel();
 		center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));

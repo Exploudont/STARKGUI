@@ -18,4 +18,9 @@
 	<entry key="INSERT_DATE">Inserisci Data</entry>
 	<entry key="DATE">Data</entry>
 	<entry key="INVALID_DATE">Data non valida</entry>
+	<entry key="INSERT_PERIOD">Inserire Periodo</entry>
+	<entry key="INVALID_PERIOD">Periodo non valido</entry>
+	<entry key="PERIOD">Periodo</entry>
+	<entry key="STARTING_DATE">Data di inizio</entry>
+	<entry key="ENDING_DATE">Data di fine</entry>
 </properties>

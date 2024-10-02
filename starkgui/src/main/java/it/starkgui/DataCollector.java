@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.SortedMap;
 
+import it.starkgui.gui.parser.DetectionToDataStateParser;
 import it.starkgui.gui.parser.DetectionToSystemStateParser;
 import it.starkgui.preset.Preset;
 import it.unicam.quasylab.jspear.SampleSet;
 import it.unicam.quasylab.jspear.SystemState;
+import it.unicam.quasylab.jspear.ds.DataState;
 
 
 /**
@@ -102,21 +104,63 @@ public final class DataCollector {
 	 * @return a {@code List} containing all the sample sets
 	 */
 	public List<SampleSet> getSampleSets(final Preset preset) {
-		
+		/*
 		List<SampleSet> list = new LinkedList<>();
 		for(Date d : collector.keySet()) {
 			System.out.println("date> " + d.toString());
-			SampleSet sampleSet = new SampleSet();
-			
-			for(Detection detection : collector.get(d)) {
-				System.out.println(detection.toString());
-				sampleSet.add(DetectionToSystemStateParser.toSystemState(preset, detection));
-			}
-				
-			list.add(sampleSet);
+			list.add(getSampleSet(preset, d));
 		}
 		
 		return list;
+		*/
+		
+		return collector.keySet()
+				.stream()
+				.map(date -> getSampleSet(preset, date))
+				.toList();
+	}
+	
+	/**
+	 * Return the sample sets of a specific date.
+	 * 
+	 * @param preset the selected preset
+	 * @param date the date
+	 * @return the {@code SampleSet}
+	 */
+	public SampleSet getSampleSet(final Preset preset, final Date date) {
+		SampleSet sampleSet = new SampleSet();
+			
+		for(Detection detection : collector.get(date)) {
+			System.out.println(detection.toString());
+			sampleSet.add(DetectionToSystemStateParser.toSystemState(preset, detection));
+		}
+		
+		return sampleSet;
+	}
+	
+	/**
+	 * Return all the data states associated to a date.
+	 * 
+	 * @param preset the selected preset
+	 * @param date the date
+	 * @return a {@code List} containing all the data states
+	 */
+	public List<DataState> getDataState(final Preset preset, final Date date) {
+		
+		return collector.get(date)
+				.stream()
+				.map(d -> DetectionToDataStateParser.toDataState(preset, d))
+				.toList();
+		/*
+		List<DataState> list = new LinkedList<>();
+		
+		for(Detection detection : collector.get(date)) {
+			System.out.println(detection.toString());
+			list.add(DetectionToDataStateParser.toDataState(preset, detection));
+		}
+		
+		return list;
+		*/
 	}
 	
 	/**
