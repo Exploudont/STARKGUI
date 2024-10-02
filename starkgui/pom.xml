@@ -56,32 +56,27 @@
       <scope>test</scope>
     </dependency>
     
-	<!--
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>1.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/dependencies/gson-2.8.6.jar</systemPath>
-    </dependency>
-	-->
-
-	<!-- Tool STARK -->
-	<!--
-    <dependency>
-      <groupId>it.unicam.quasylab.jspear</groupId>
-      <artifactId>STARKlib</artifactId>
-      <version>1.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/dependencies/lib.jar</systemPath>
-    </dependency>
-	-->
-	
 	<!-- Tool STARK test -->
 	<dependency>
       <groupId>it.unicam.quasylab.jspear</groupId>
       <artifactId>STARKlib</artifactId>
       <version>1.0</version>
+    </dependency>
+    
+    <!-- SPECLANG test 
+    <dependency>
+      <groupId>it.unicam.quasylab.jspear.speclang</groupId>
+      <artifactId>SPECLANGlib</artifactId>
+      <version>1.0</version>
+    </dependency>
+    -->
+    
+    <dependency>
+      <groupId>it.unicam.quasylab.jspear.speclang</groupId>
+      <artifactId>speclang</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/speclang.jar</systemPath>
     </dependency>
     
 	<!-- ApacheCommon -->
@@ -118,6 +113,30 @@
           <version>1.0</version>
           <packaging>jar</packaging>
           <file>${project.basedir}/dependencies/lib.jar</file>
+          <generatePom>true</generatePom>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install-jar-lib</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- For 3rd part library speclang -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <groupId>it.unicam.quasylab.jspear.speclang</groupId>
+          <artifactId>SPECLANGlib</artifactId>
+          <version>1.0</version>
+          <packaging>jar</packaging>
+          <file>${project.basedir}/dependencies/speclang.jar</file>
           <generatePom>true</generatePom>
         </configuration>
         <executions>
