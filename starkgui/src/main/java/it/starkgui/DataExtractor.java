@@ -21,6 +21,14 @@ import it.unicam.quasylab.jspear.speclang.variables.JSpearVariable;
 
 import org.apache.commons.math3.random.RandomGenerator;
 
+
+/**
+ * Class that allow to extract data and convert into STARK classes.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17
+ */
 public final class DataExtractor {
 	
 	/**
@@ -46,7 +54,13 @@ public final class DataExtractor {
 			registry.record(v);
 	}
 	
-	
+	/**
+	 * Generate an evolution sequence specifying the period.
+	 * 
+	 * @param start the starting date
+	 * @param end the ending date 
+	 * @return the computed {@code EvolutionSequence} object
+	 */
 	public EvolutionSequence computeEvolutionSequence(final Date start, final Date end) {
 		// per i dati
 		Date[] validDates = getDetectionDates(start, end);		
@@ -73,8 +87,15 @@ public final class DataExtractor {
 		return sequence;
 	}
 	
+	/**
+	 * Generate an controlled system specifying the period.
+	 * 
+	 * @param start the starting date
+	 * @param end the ending date 
+	 * @return the computed {@code ControlledSystem} object
+	 */
 	public ControlledSystem computeSystem(final Date start, final Date end) {
-		Date[] validDates = getDetectionDates(start, end);		
+		Date[] validDates = getDetectionDates(start, end);
 		List<Detection> allDetections = getAllDetections(validDates);
 		Iterator<Detection> detectionIterator = allDetections.iterator();
 		
@@ -148,7 +169,7 @@ public final class DataExtractor {
 	 * @return {@code true} only if the checking date is between the two dates, otherwise {@code false}
 	 */
 	private static boolean isBetween(final Date start, final Date end, final Date date) {
-		return date.compareTo(start)>=1 && date.compareTo(end)<=1;
+		return (date.compareTo(start) >=1 && date.compareTo(end) <= -1);
 	}
 	
 	/**

@@ -17,11 +17,25 @@ import it.unicam.quasylab.jspear.ds.DataStateExpression;
 import it.unicam.quasylab.jspear.perturbation.NonePerturbation;
 import it.unicam.quasylab.jspear.speclang.variables.JSpearVariableRegistry;
 
+
+/**
+ * Class that allow the comparison between evolution sequences.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17
+ */
 public final class SequenceComparator {
 	
 	private static final int x = 0;
 	private static final int y = 1;
 	
+	/**
+	 * Create a {@code SequenceComparator} object.
+	 * 
+	 * @param preset the preset
+	 * @param registry the variable registry
+	 */
 	public SequenceComparator(final Preset preset, final JSpearVariableRegistry registry) {
 		this.preset = preset;
 		this.registry = registry;
@@ -63,6 +77,14 @@ public final class SequenceComparator {
 		return F;
 	}
 
+	/**
+	 * Compare two evolution sequence.
+	 * 
+	 * @param system the system
+	 * @param s1 the first evolution sequence
+	 * @param s1 the first evolution sequence
+	 * @return the evolution atomic distance
+	 */
 	public double[][] compare(ControlledSystem system, final EvolutionSequence s1, final EvolutionSequence s2) {
 		RandomGenerator rand = new DefaultRandomGenerator();
 		return compare(system, s1, s2, rand);
@@ -71,8 +93,12 @@ public final class SequenceComparator {
 	/**
 	 * Compare two evolution sequence.
 	 * 
-	 * @param 
-	 * */
+	 * @param system the system
+	 * @param s1 the first evolution sequence
+	 * @param s1 the first evolution sequence
+	 * @param rand the random generator
+	 * @return the evolution atomic distance
+	 */
 	public double[][] compare(ControlledSystem system, final EvolutionSequence s1, final EvolutionSequence s2, RandomGenerator rand) {
 		int N_s1 = s1.length();
 		int N_s2 = s2.length();
@@ -120,7 +146,12 @@ public final class SequenceComparator {
 		return distP2P;
 	}
 	
-	
+	/**
+	 * Save the compared data.
+	 * 
+	 * @param file_name the to save file
+	 * @param direct_evaluation_atomic_distP2P the evolution atomic distance
+	 * */
 	public boolean save(final String file_name, final double[][] direct_evaluation_atomic_distP2P) {
 		try {
 			Util.writeToCSV("./" + file_name + ".csv", direct_evaluation_atomic_distP2P);

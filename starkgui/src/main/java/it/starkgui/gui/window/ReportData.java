@@ -30,20 +30,30 @@ import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 
-public class ReportData {
 
+/**
+ * Class that allow the user to export and report data.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17
+ */
+public class ReportData {
+	
+	/** The frame. */
 	protected static JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
 	
 	private final Preset preset;
 	private final DataCollector collector;
 	
-	PeriodDateController first;
-	PeriodDateController second;
+	private PeriodDateController first;
+	private PeriodDateController second;
 	
 	/**
-	 * Create the application.
+	 * Create a {@code ReportData} object.
+	 * 
+	 * @param preset the preset
+	 * @param collector the collected data
 	 */
 	public ReportData(final Preset preset, final DataCollector collector) {
 		this.preset = preset;
@@ -120,45 +130,22 @@ public class ReportData {
 		verticalBox.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		
 		verticalBox.add(first.getView().getComponent());
 		//verticalBox.add(new Separator());
 		verticalBox.add(second.getView().getComponent());
 		
+		JPanel tmp = new JPanel();
+		JLabel dateTip = new JLabel("gg-mm-yyyy");
+		dateTip.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		dateTip.setForeground(Theme.tipColor);
+		tmp.add(dateTip);
+		verticalBox.add(tmp);
+		
 	}
 	
-	/*
-	private JPanel createInsertPeriodPanel() {
-		JPanel panel = new JPanel();
-		
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-		
-		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.STARTING_DATE));
-		panel_2.add(lblNewLabel);
-		
-		textField = new JTextField();
-		panel_2.add(textField);
-		textField.setColumns(10);
-		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		
-		JLabel lblNewLabel_1 = new JLabel(Language.getLabel(Language.ENDING_DATE));
-		panel_3.add(lblNewLabel_1);
-		
-		textField_1 = new JTextField();
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
-		
-		
-		return panel;
-	}
-	*/
-	
-	
+	/**
+	 * Initialize the report frame.
+	 */
 	private void initializeReport() {
 		frame.removeAll();
 	}
@@ -167,23 +154,30 @@ public class ReportData {
 	// =============================================
 	//               T E S T I N G
 	// =============================================
+	
+	/**
+	 * Compute data of the specified periods.
+	 * 
+	 * @param first_period the first period
+	 * @param second_period the second period
+	 */
 	public void computePeriodsData(Date[] first_period, Date[] second_period) {
 		try {
 			DataExtractor extractor = new DataExtractor(preset, collector);
 		
 			ControlledSystem system = extractor.computeSystem(first_period[0], first_period[1]);
-			EvolutionSequence s1 = extractor.computeEvolutionSequence(second_period[0], second_period[1]);
 			
-			for(int i=0 ; i<s1.length() ; i++)
-				System.out.println(s1.get(i).toString());
+			EvolutionSequence s1 = extractor.computeEvolutionSequence(first_period[0], first_period[1]);
+			EvolutionSequence s2 = extractor.computeEvolutionSequence(second_period[0], second_period[1]);
 			
 			
 			SequenceComparator comparator = new SequenceComparator(preset, extractor.getRegistry());
-			double[][] res = comparator.compare(system, s1, s1);
+			double[][] res = comparator.compare(system, s1, s2);
 			
 			comparator.save("output", res);
 			
 			System.out.println("Completato");
+			
 		} catch(Exception e) {
 			System.out.println("Errore");
 		}

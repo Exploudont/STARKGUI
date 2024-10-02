@@ -28,6 +28,7 @@ public final class SliderView
 		panel = new JPanel();
 		
 		this.slider = slider;
+		this.slider.addChangeListener(this);
 		this.slider.setForeground(Theme.textColor);
 		
 		this.label_text = new JLabel();

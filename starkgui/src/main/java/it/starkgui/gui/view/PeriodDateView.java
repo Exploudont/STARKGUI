@@ -19,13 +19,28 @@ import it.starkgui.common.Language;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+/**
+ * View class for periods date objects.
+ * 
+ * @author Daniele Longobardi (matricola 737547)
+ * @version 1.0.0
+ * @since JDK 17
+ */
 public class PeriodDateView {
 	
+	/**
+	 * Create a {@code PeriodDateView} object.
+	 * 
+	 * @param text the text to show
+	 */
 	public PeriodDateView(final String text) {
 		this.text = text;
 		initialize();
 	}
 	
+	/**
+	 * Initialize the view.
+	 */
 	private void initialize() {
 		verticalBox = Box.createVerticalBox();
 		
@@ -41,6 +56,7 @@ public class PeriodDateView {
 		panel.add(panel_2);
 		
 		JLabel lblNewLabel = new JLabel(Language.getLabel(Language.STARTING_DATE));
+		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel_2.add(lblNewLabel);
 		
 		startingDateField = new JTextField();
@@ -112,10 +128,20 @@ public class PeriodDateView {
 		verticalBox.add(panel);		
 	}
 	
+	/**
+	 * Return the shown text.
+	 * 
+	 * @return the shown text
+	 */
 	public String getText() {
 		return this.text;
 	}
-	
+
+	/**
+	 * Read the period dates from the view.
+	 * 
+	 * @return the period dates
+	 */
 	public Date[] read() {
 		Date d1 = parseDate(startingDateField);
 		Date d2 = parseDate(endingDateField);
@@ -125,11 +151,22 @@ public class PeriodDateView {
 		
 		return new Date[] { d1, d2 };
 	}
-	
+
+	/**
+	 * Return the component representing the view.
+	 * 
+	 * @return the {@code Component} representing the view
+	 */
 	public Component getComponent() {
 		return this.verticalBox;
 	}
 	
+	/**
+	 * Parse data into a {@code Date} object.
+	 * 
+	 * @param textField the source of data
+	 * @return the parsed {@code Date} object
+	 */
 	private static Date parseDate(JTextField textField) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		

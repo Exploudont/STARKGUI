@@ -85,6 +85,11 @@ public final class GUIUtils {
 		return null;
 	}
 	
+	/**
+	 * Return the application image.
+	 * 
+	 * @return the application image
+	 */
 	public static Image getAppIcon() {
 		return appIcon;
 	}
