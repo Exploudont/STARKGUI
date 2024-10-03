@@ -2,12 +2,7 @@ package it.starkgui.gui.controller;
 
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-
-import javax.swing.Box;
-import javax.swing.JScrollPane;
 
 import it.starkgui.preset.Parameter;
 import it.starkgui.preset.Preset;

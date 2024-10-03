@@ -1,5 +1,7 @@
 package it.starkgui.gui.view;
 
+import java.awt.Component;
+
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,11 +54,11 @@ public final class DetectionView {
 	}
 
 	/**
-	 * Return the generated panel.
+	 * Return the generated component.
 	 * 
-	 * @return the generated panel
+	 * @return the generated component
 	 */
-	public JPanel getPanel() {
+	public Component getComponent() {
 		return panel;
 	}
 	

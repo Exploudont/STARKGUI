@@ -25,7 +25,7 @@ public class ProgramConfiguration {
 	/**
 	 * Define the configuration file name.
 	 */
-	public static final String CONFIGURATION_FILE_NAME;
+	public static final String ConfigurationFileName;
 	
 	
 	/**
@@ -112,12 +112,12 @@ public class ProgramConfiguration {
 	
 	
 	static {
-		CONFIGURATION_FILE_NAME = "conf.ini";
+		ConfigurationFileName = "conf.ini";
 		
 		ProgramConfiguration conf_tmp = null;
 		
 		try {
-			InputStream in_stream = Utils.loadFile(CONFIGURATION_FILE_NAME);
+			InputStream in_stream = Utils.loadFile(ConfigurationFileName);
 			conf_tmp = new ProgramConfiguration(in_stream);
 		} catch(Exception e){
 			throw new RuntimeException("Can not initialize the project configuration.");

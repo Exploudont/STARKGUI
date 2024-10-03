@@ -1,7 +1,6 @@
 package it.starkgui.gui.controller;
 
 
-import javax.swing.JLabel;
 import javax.swing.JSlider;
 
 import it.starkgui.gui.view.SliderView;

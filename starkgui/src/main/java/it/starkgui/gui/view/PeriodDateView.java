@@ -1,7 +1,6 @@
 package it.starkgui.gui.view;
 
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,6 @@ import java.util.Date;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu.Separator;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 

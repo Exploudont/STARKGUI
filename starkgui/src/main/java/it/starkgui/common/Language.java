@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.io.FileReader;
+
 
 /**
  * Class that allow the user to access
@@ -53,9 +53,7 @@ public final class Language {
 	public static final int INVALID_PERIOD;
 
 	
-	// TODO: modificare la lunghezza affinche' sia perfetta
 	private static final int label_count = 30;
-	
 	
 	private static String[] labels;
 	

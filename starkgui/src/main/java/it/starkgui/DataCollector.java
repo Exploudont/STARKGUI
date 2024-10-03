@@ -1,6 +1,5 @@
 package it.starkgui;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.TreeMap;
 import java.util.List;
@@ -11,7 +10,6 @@ import it.starkgui.gui.parser.DetectionToDataStateParser;
 import it.starkgui.gui.parser.DetectionToSystemStateParser;
 import it.starkgui.preset.Preset;
 import it.unicam.quasylab.jspear.SampleSet;
-import it.unicam.quasylab.jspear.SystemState;
 import it.unicam.quasylab.jspear.ds.DataState;
 
 
@@ -104,16 +102,6 @@ public final class DataCollector {
 	 * @return a {@code List} containing all the sample sets
 	 */
 	public List<SampleSet> getSampleSets(final Preset preset) {
-		/*
-		List<SampleSet> list = new LinkedList<>();
-		for(Date d : collector.keySet()) {
-			System.out.println("date> " + d.toString());
-			list.add(getSampleSet(preset, d));
-		}
-		
-		return list;
-		*/
-		
 		return collector.keySet()
 				.stream()
 				.map(date -> getSampleSet(preset, date))
@@ -151,16 +139,6 @@ public final class DataCollector {
 				.stream()
 				.map(d -> DetectionToDataStateParser.toDataState(preset, d))
 				.toList();
-		/*
-		List<DataState> list = new LinkedList<>();
-		
-		for(Detection detection : collector.get(date)) {
-			System.out.println(detection.toString());
-			list.add(DetectionToDataStateParser.toDataState(preset, detection));
-		}
-		
-		return list;
-		*/
 	}
 	
 	/**

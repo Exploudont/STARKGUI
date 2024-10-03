@@ -50,11 +50,11 @@ public final class SliderView
 	}
 	
 	/**
-	 * Return the panel that contains all the slider content.
+	 * Return the component that contains all the slider content.
 	 * 
-	 * @return return the panel that contains all the slider content
+	 * @return return the component that contains all the slider content
 	 */
-	public JPanel getPanel() {
+	public Component getComponent() {
 		return this.panel;
 	}
 	

@@ -1,25 +1,19 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.ImageIcon;
 
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
@@ -28,11 +22,9 @@ import it.starkgui.common.Theme;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
-import java.awt.Color;
+
 
 /**
  * Window class that allow the user to choose a date.
@@ -58,7 +50,7 @@ public class ChooseDateWindow {
 	/**
 	 * Create the application.
 	 * 
-	 * @param dataWindow the already written datas
+	 * @param dataWindow the already written data
 	 */
 	public ChooseDateWindow(WrittenDatesWindow dataWindow) {
 		this.dataWindow = dataWindow;

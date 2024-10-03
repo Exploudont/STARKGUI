@@ -1,25 +1,19 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutFocusTraversalPolicy;
 
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
-import it.starkgui.preset.Preset;
 import it.starkgui.preset.PresetLoader;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

@@ -4,7 +4,6 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JPanel;
 
@@ -16,7 +15,6 @@ import it.starkgui.preset.Preset;
 import it.starkgui.preset.PresetLoader;
 
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -85,10 +83,10 @@ public class ManagerWindow {
 		exportDataButton.setFont(Theme.optionFont);
 		exportDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReportData win = new ReportData(preset, DataCollector.getInstance());
+				ReportDataWindow win = new ReportDataWindow(preset, DataCollector.getInstance());
 				
-				ReportData.frame.setBounds(frame.getBounds());
-				ReportData.frame.setVisible(true);
+				ReportDataWindow.frame.setBounds(frame.getBounds());
+				ReportDataWindow.frame.setVisible(true);
 				frame.setVisible(false);
 			}
 		});

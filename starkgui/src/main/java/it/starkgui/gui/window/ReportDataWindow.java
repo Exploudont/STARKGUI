@@ -1,33 +1,29 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 import it.starkgui.DataCollector;
 import it.starkgui.DataExtractor;
-import it.starkgui.SequenceComparator;
 import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
 import it.starkgui.gui.controller.PeriodDateController;
 import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.ControlledSystem;
-import it.unicam.quasylab.jspear.EvolutionSequence;
+import it.unicam.quasylab.jspear.SampleSet;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JPopupMenu.Separator;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.Box;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 
 
@@ -38,7 +34,7 @@ import javax.swing.BoxLayout;
  * @version 1.0.0
  * @since JDK 17
  */
-public class ReportData {
+public class ReportDataWindow {
 	
 	/** The frame. */
 	protected static JFrame frame;
@@ -55,7 +51,7 @@ public class ReportData {
 	 * @param preset the preset
 	 * @param collector the collected data
 	 */
-	public ReportData(final Preset preset, final DataCollector collector) {
+	public ReportDataWindow(final Preset preset, final DataCollector collector) {
 		this.preset = preset;
 		this.collector = collector;
 		
@@ -114,6 +110,11 @@ public class ReportData {
 					return ;
 				}
 				
+				if(period_1[0].compareTo(period_1[1]) > 0 || period_2[0].compareTo(period_2[1]) > 0) {
+					ErrorWindow win = new ErrorWindow(frame, ManagerWindow.frame, Language.getLabel(Language.INVALID_PERIOD));
+					return ;
+				}
+				
 				computePeriodsData(period_1, period_2);
 			}
 		});
@@ -131,7 +132,6 @@ public class ReportData {
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		verticalBox.add(first.getView().getComponent());
-		//verticalBox.add(new Separator());
 		verticalBox.add(second.getView().getComponent());
 		
 		JPanel tmp = new JPanel();
@@ -142,17 +142,10 @@ public class ReportData {
 		verticalBox.add(tmp);
 		
 	}
-	
-	/**
-	 * Initialize the report frame.
-	 */
-	private void initializeReport() {
-		frame.removeAll();
-	}
 
 	
 	// =============================================
-	//               T E S T I N G
+	//       P R O C E S S I N G    D A T A
 	// =============================================
 	
 	/**
@@ -161,26 +154,16 @@ public class ReportData {
 	 * @param first_period the first period
 	 * @param second_period the second period
 	 */
-	public void computePeriodsData(Date[] first_period, Date[] second_period) {
-		try {
-			DataExtractor extractor = new DataExtractor(preset, collector);
+	public void computePeriodsData(final Date[] first_period, final Date[] second_period) {
+		//Date maximum = DateFiller.getMax(first_period, second_period);
+		//Date minimum = DateFiller.getMin(first_period, second_period);
 		
-			ControlledSystem system = extractor.computeSystem(first_period[0], first_period[1]);
-			
-			EvolutionSequence s1 = extractor.computeEvolutionSequence(first_period[0], first_period[1]);
-			EvolutionSequence s2 = extractor.computeEvolutionSequence(second_period[0], second_period[1]);
-			
-			
-			SequenceComparator comparator = new SequenceComparator(preset, extractor.getRegistry());
-			double[][] res = comparator.compare(system, s1, s2);
-			
-			comparator.save("output", res);
-			
-			System.out.println("Completato");
-			
-		} catch(Exception e) {
-			System.out.println("Errore");
-		}
+		DataExtractor extractor = new DataExtractor(preset, collector);
+		
+		List<SampleSet> sampleSetPeriod1 = extractor.computeAllSampleSets(first_period[0], first_period[1]);
+		List<SampleSet> sampleSetPeriod2 = extractor.computeAllSampleSets(second_period[0], second_period[1]);
+		
+		System.out.println("Computed");
 	}
 
 }

@@ -1,6 +1,5 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
@@ -9,14 +8,11 @@ import it.starkgui.common.GUIUtils;
 import it.starkgui.common.Language;
 import it.starkgui.common.Theme;
 import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.SampleSet;
-import it.unicam.quasylab.jspear.SystemState;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -185,7 +181,6 @@ public class WrittenDatesWindow {
 			verticalBox.add(button);
 		}
 		
-		//verticalBox.revalidate();
 		scroller.revalidate();
 	}
 

@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.SwingConstants;
 
@@ -15,21 +14,15 @@ import it.starkgui.common.Language;
 import it.starkgui.common.ProgramConfiguration;
 import it.starkgui.common.Theme;
 
-import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
-import java.awt.Dimension;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import java.awt.SystemColor;
 
 
 /**

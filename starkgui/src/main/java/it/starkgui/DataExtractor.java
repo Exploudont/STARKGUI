@@ -1,25 +1,16 @@
 package it.starkgui;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import it.starkgui.gui.parser.DetectionToDataStateParser;
 import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.ControlledSystem;
-import it.unicam.quasylab.jspear.DefaultRandomGenerator;
-import it.unicam.quasylab.jspear.EvolutionSequence;
-import it.unicam.quasylab.jspear.controller.Controller;
-import it.unicam.quasylab.jspear.controller.NilController;
-import it.unicam.quasylab.jspear.ds.DataState;
-import it.unicam.quasylab.jspear.ds.DataStateUpdate;
+import it.unicam.quasylab.jspear.SampleSet;
+import it.unicam.quasylab.jspear.ds.DataStateExpression;
 import it.unicam.quasylab.jspear.speclang.variables.JSpearVariableRegistry;
-import it.unicam.quasylab.jspear.speclang.variables.JSpearVariable;
-
-import org.apache.commons.math3.random.RandomGenerator;
 
 
 /**
@@ -32,7 +23,7 @@ import org.apache.commons.math3.random.RandomGenerator;
 public final class DataExtractor {
 	
 	/**
-	 * Computa i dati.
+	 * Create a {@code DataExtractor} object.
 	 * 
 	 * @param preset the selected preset
 	 * @param collector the data collector
@@ -41,109 +32,35 @@ public final class DataExtractor {
 		this.preset = preset;
 		this.collector = collector;
 		
-		RegisterVariables();
+		//RegisterVariables();
 	}
 	
-	/**
-	 * Register the preset variables.
-	 */
-	private void RegisterVariables() {
-		registry = new JSpearVariableRegistry();
-		
-		for(String v : preset.getNames())
-			registry.record(v);
-	}
-	
-	/**
-	 * Generate an evolution sequence specifying the period.
+	/** 
+	 * Compute all the sample set of a specific period.
 	 * 
 	 * @param start the starting date
-	 * @param end the ending date 
-	 * @return the computed {@code EvolutionSequence} object
+	 * @param end the starting end
+	 * @return the list of sample sets
 	 */
-	public EvolutionSequence computeEvolutionSequence(final Date start, final Date end) {
-		// per i dati
-		Date[] validDates = getDetectionDates(start, end);		
-		List<Detection> allDetections = getAllDetections(validDates);
-		Iterator<Detection> detectionIterator = allDetections.iterator();
-		
-		
-		// Per l'EvolutionSequence
-		
-		RandomGenerator rand = new DefaultRandomGenerator();
-		
-		Controller controller = new NilController();
-		
-		// il primo elemento dell'iteratore è lo stato iniziale
-		DataState initialState = DetectionToDataStateParser.toDataState(preset, detectionIterator.next());
-		
-		ControlledSystem system = new ControlledSystem(controller, (rg, ds) -> dataStateFunction(rg, ds, detectionIterator), initialState);
-		
-		// Indica la cardinalità (spero del numero di DataState ??)
-		int sizeNominalSequence = allDetections.size();
-		
-		EvolutionSequence sequence = new EvolutionSequence(rand, rg -> system, sizeNominalSequence);
-		
-		return sequence;
-	}
-	
-	/**
-	 * Generate an controlled system specifying the period.
-	 * 
-	 * @param start the starting date
-	 * @param end the ending date 
-	 * @return the computed {@code ControlledSystem} object
-	 */
-	public ControlledSystem computeSystem(final Date start, final Date end) {
+	public List<SampleSet> computeAllSampleSets(final Date start, final Date end) {
 		Date[] validDates = getDetectionDates(start, end);
-		List<Detection> allDetections = getAllDetections(validDates);
-		Iterator<Detection> detectionIterator = allDetections.iterator();
+		Date[] allPeriodDates = DateFiller.fillByMonths(validDates, start, end);
 		
-		RandomGenerator rand = new DefaultRandomGenerator();
-		
-		Controller controller = new NilController();
-		
-		DataState initialState = DetectionToDataStateParser.toDataState(preset, detectionIterator.next());
-				
-		ControlledSystem system = new ControlledSystem(controller, (rg, ds) -> dataStateFunction(rg, ds, detectionIterator), initialState);
-		
-		return system;
-	}
-	
-	// Spero sia corretta
-	private DataState dataStateFunction(RandomGenerator rg, DataState ds, Iterator<Detection> it) {
-		// rg non viene usato
-		
-		// la funzione restituisce il data state successivo
-		// sfrutta il metodo apply di DataState ed ottiene
-		// i DataStateUpdate sulla base del successivo 
-		// Detection (grazie all'Iteratore)
-		return ds.apply(getDataStateUpdate(it.next()));
-	}
-	
-	/**
-	 * Return all the detections of the specified dates.
-	 * 
-	 * @param dates the dates
-	 * @return the detections of the specified dates
-	 */
-	private List<Detection> getAllDetections(final Date[] dates) {
-		List<Detection> list = new LinkedList<>();
-		
-		for(Date d : dates)
-			list.addAll(collector.get(d));
+		List<SampleSet> list = new LinkedList<>();
+		for(Date d : allPeriodDates)
+			list.add(computeSampleSet(d));
 		
 		return list;
 	}
 	
 	/**
-	 * Return the initial state of the period.
+	 * Compute the sample set of a specific date period.
 	 * 
-	 * @param date the starting date
-	 * @return the initial state
+	 * @param date the date
+	 * @return 
 	 */
-	private DataState getInitialDataState(final Date date) {
-		return collector.getDataState(preset, date).get(1);
+	public SampleSet computeSampleSet(final Date date) {
+		return collector.contains(date) ? collector.getSampleSet(preset, date) : new SampleSet();
 	}
 	
 	/**
@@ -173,31 +90,62 @@ public final class DataExtractor {
 	}
 	
 	/**
-	 * Return the list of {@code DataStateUpdate} of a detection.
-	 * 
-	 * @param detection the detection
-	 * @return the generated {@code List<DataStateUpdate>}
-	 * */
-	private List<DataStateUpdate> getDataStateUpdate(final Detection detection) {
-		List<DataStateUpdate> updates = new LinkedList<>();
+	 * Register the preset variables.
+	 */
+	/*
+	private void RegisterVariables() {
+		registry = new JSpearVariableRegistry();
 		
-		for(String v : detection.getParameters()) {
-			int index = registry.get(v).index();
-			updates.add(new DataStateUpdate(index, detection.get(v)));
-		}
-		
-		return updates;
+		for(String v : preset.getNames())
+			registry.record(v);
 	}
+	*/
 	
 	/**
 	 * Return the variable registry.
 	 * 
 	 * @return the variable registry
 	 */
+	/*
 	public JSpearVariableRegistry getRegistry() {
 		return this.registry;
 	}
+	*/
 	
+	
+	/**
+	 * Return an array list of the preset labels.
+	 * 
+	 * @return an array list of the labels
+	 */
+	/*
+	public ArrayList<String> getLabels() {
+		ArrayList<String> L = new ArrayList<String>();
+		
+		for(String name : preset.getNames())
+			L.add(name);
+		
+		return L;
+	}
+	*/
+
+	/**
+	 * Return an array list of the expression to get data from a data state.
+	 * 
+	 * @return an array list data state expression
+	 */
+	/*
+	public ArrayList<DataStateExpression> getDataStateExpression() {
+		ArrayList<DataStateExpression> F = new ArrayList<DataStateExpression>();
+		
+		for(String campo : preset.getNames()) {
+			int index = registry.get(campo).index();
+			F.add(ds -> ds.get(index));
+		}
+		
+		return F;
+	}
+	*/
 	
 	
 	private final Preset preset;

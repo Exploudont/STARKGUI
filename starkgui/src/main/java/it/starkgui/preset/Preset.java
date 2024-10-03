@@ -1,18 +1,8 @@
 package it.starkgui.preset;
 
-import org.json.JSONObject;
 
-import it.starkgui.common.Utils;
-
-import org.json.JSONArray;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 /**

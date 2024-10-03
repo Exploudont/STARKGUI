@@ -1,30 +1,15 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.FlowLayout;
 import javax.swing.Box;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JScrollPane;
 
-//import org.apache.commons.math3.random.RandomGenerator;
-
-import it.starkgui.preset.Parameter;
 import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.ControlledSystem;
-import it.unicam.quasylab.jspear.SampleSet;
-import it.unicam.quasylab.jspear.SystemState;
-import it.unicam.quasylab.jspear.ds.DataRange;
-import it.unicam.quasylab.jspear.ds.DataState;
-import it.unicam.quasylab.jspear.ds.DataStateFunction;
-import it.unicam.quasylab.jspear.controller.Controller;
-import it.unicam.quasylab.jspear.controller.NilController;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.JPanel;
 
@@ -37,7 +22,6 @@ import it.starkgui.gui.controller.SliderController;
 import it.starkgui.gui.parser.SliderControllerParser;
 
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
@@ -145,7 +129,7 @@ public class InsertDataWindow {
 		
 		for(SliderController slider : sliderControllers) {
 			verticalBox.add(Box.createVerticalStrut(70));
-			verticalBox.add(slider.getView().getPanel());
+			verticalBox.add(slider.getView().getComponent());
 		}
 		
 		verticalBox.add(Box.createVerticalStrut(70));

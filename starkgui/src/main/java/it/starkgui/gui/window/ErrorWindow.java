@@ -1,11 +1,9 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;

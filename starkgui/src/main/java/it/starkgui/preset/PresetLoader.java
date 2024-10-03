@@ -1,19 +1,15 @@
 package it.starkgui.preset;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.json.JSONObject;
-import org.json.JSONArray;
 
 import it.starkgui.common.Utils;
 
@@ -51,15 +47,6 @@ public final class PresetLoader {
 			Parameter p = ParameterParser.parse((JSONObject) o);
 			mapped.put(p.name(), p);
 		}
-		
-		/*
-		final Map<String, Parameter> mapped = json_preset
-				.getJSONArray("parameters")
-				.toList()
-				.stream()
-				.map(obj -> ParameterParser.parse((JSONObject) obj))
-				.collect(Collectors.toMap(p->p.name(), p -> p));
-		*/
 		
 		return new Preset(mapped);
 	}

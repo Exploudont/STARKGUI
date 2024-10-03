@@ -1,6 +1,5 @@
 package it.starkgui.gui.window;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -9,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 
 import it.starkgui.DataCollector;
 import it.starkgui.Detection;
@@ -20,15 +18,12 @@ import it.starkgui.gui.view.DetectionView;
 import it.starkgui.preset.Preset;
 
 import javax.swing.JLabel;
-import java.awt.Font;
 import java.util.Date;
-import java.util.List;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -46,11 +41,12 @@ public class DetectionWindow {
 
 	/** The frame. */
 	protected static JFrame frame;
+	
 	private static Box verticalBox;
-
-	private static Date date;
-	private final Preset preset;
 	private static JScrollPane scroller;
+	private static Date date;
+	
+	private final Preset preset;
 
 	/**
 	 * Create the application.
@@ -156,7 +152,7 @@ public class DetectionWindow {
 		JPanel panel = new JPanel();
 		
 		DetectionView view = new DetectionView(detection);
-		panel.add(view.getPanel());
+		panel.add(view.getComponent());
 		JButton tmp_button = new JButton();
 		tmp_button.setIcon(Theme.removeIcon);
 		GUIUtils.removeDecorations(tmp_button);

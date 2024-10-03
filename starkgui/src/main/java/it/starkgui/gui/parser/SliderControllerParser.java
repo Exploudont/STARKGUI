@@ -1,15 +1,5 @@
 package it.starkgui.gui.parser;
 
-import java.util.Arrays;
-
-import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.ControlledSystem;
-import it.unicam.quasylab.jspear.SystemState;
-import it.unicam.quasylab.jspear.controller.Controller;
-import it.unicam.quasylab.jspear.controller.NilController;
-import it.unicam.quasylab.jspear.ds.DataRange;
-import it.unicam.quasylab.jspear.ds.DataState;
-import it.unicam.quasylab.jspear.ds.DataStateFunction;
 
 import it.starkgui.Detection;
 import it.starkgui.gui.controller.SliderController;

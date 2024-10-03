@@ -4,11 +4,11 @@
 
   <groupId>it.starkgui</groupId>
   <artifactId>starkgui</artifactId>
-  <version>0.0.6-Alpha</version>
+  <version>0.0.7-Alpha</version>
   <packaging>jar</packaging>
 
   <name>starkgui</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/Exploudont/STARKGUI</url>
   
   <!-- Author -->
   <developers>
