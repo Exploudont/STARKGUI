@@ -28,7 +28,6 @@ Il progetto presenta delle dipendenze esterne e di pacchetti _jar_ di terze part
 Per la compilazione sarà necessario recersi all'interno della cartella di progetto e lanciare il seguente comando da terminale:
 
 ``` Shell
-mvn validate
 mvn clean install
 ```
 

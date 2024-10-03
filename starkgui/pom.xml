@@ -57,11 +57,13 @@
     </dependency>
     
 	<!-- Tool STARK test -->
+	<!--
 	<dependency>
       <groupId>it.unicam.quasylab.jspear</groupId>
       <artifactId>STARKlib</artifactId>
       <version>1.0</version>
     </dependency>
+	-->
     
     <!-- SPECLANG test 
     <dependency>
@@ -77,6 +79,14 @@
       <version>1.0</version>
       <scope>system</scope>
       <systemPath>${project.basedir}/dependencies/speclang.jar</systemPath>
+    </dependency>
+	
+	<dependency>
+      <groupId>it.unicam.quasylab.jspear</groupId>
+      <artifactId>STARKlib</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/lib.jar</systemPath>
     </dependency>
     
 	<!-- ApacheCommon -->
