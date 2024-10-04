@@ -155,13 +155,10 @@ public class ReportDataWindow {
 	 * @param second_period the second period
 	 */
 	public void computePeriodsData(final Date[] first_period, final Date[] second_period) {
-		//Date maximum = DateFiller.getMax(first_period, second_period);
-		//Date minimum = DateFiller.getMin(first_period, second_period);
-		
 		DataExtractor extractor = new DataExtractor(preset, collector);
 		
-		List<SampleSet> sampleSetPeriod1 = extractor.computeAllSampleSets(first_period[0], first_period[1]);
-		List<SampleSet> sampleSetPeriod2 = extractor.computeAllSampleSets(second_period[0], second_period[1]);
+		List<SampleSet> sampleSetPeriod_1 = extractor.computeAllSampleSets(first_period[0], first_period[1]);
+		List<SampleSet> sampleSetPeriod_2 = extractor.computeAllSampleSets(second_period[0], second_period[1]);
 		
 		System.out.println("Computed");
 	}

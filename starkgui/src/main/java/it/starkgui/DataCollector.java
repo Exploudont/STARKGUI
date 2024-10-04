@@ -118,10 +118,8 @@ public final class DataCollector {
 	public SampleSet getSampleSet(final Preset preset, final Date date) {
 		SampleSet sampleSet = new SampleSet();
 			
-		for(Detection detection : collector.get(date)) {
-			System.out.println(detection.toString());
+		for(Detection detection : collector.get(date))
 			sampleSet.add(DetectionToSystemStateParser.toSystemState(preset, detection));
-		}
 		
 		return sampleSet;
 	}

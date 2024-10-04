@@ -8,9 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.starkgui.preset.Preset;
-import it.unicam.quasylab.jspear.SampleSet;
+//import it.unicam.quasylab.jspear.SampleSet;
+import it.unicam.quasylab.jspear.*;
 import it.unicam.quasylab.jspear.ds.DataStateExpression;
 import it.unicam.quasylab.jspear.speclang.variables.JSpearVariableRegistry;
+import it.unicam.quasylab.jspear.speclang.variables.JSpearVariable;
 
 
 /**
@@ -46,7 +48,8 @@ public final class DataExtractor {
 		Date[] validDates = getDetectionDates(start, end);
 		Date[] allPeriodDates = DateFiller.fillByMonths(validDates, start, end);
 		
-		List<SampleSet> list = new LinkedList<>();
+		List<SampleSet> list = new LinkedList<SampleSet>();
+		
 		for(Date d : allPeriodDates)
 			list.add(computeSampleSet(d));
 		
@@ -150,5 +153,5 @@ public final class DataExtractor {
 	
 	private final Preset preset;
 	private final DataCollector collector;
-	private JSpearVariableRegistry registry;
+	//private JSpearVariableRegistry registry;
 }
