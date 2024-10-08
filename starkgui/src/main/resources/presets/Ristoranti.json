@@ -1,4 +1,9 @@
 {
+	"metadata" : {
+		"name": "Ristoranti",
+		"version": 1.0
+	},
+	
 	"parameters": [
 		{ "name":"Cucina",  "max_value":5.0, "min_value":1.0 },
 		{ "name":"Servizio",    "max_value":5.0, "min_value":1.0 },
